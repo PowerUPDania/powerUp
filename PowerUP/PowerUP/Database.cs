@@ -23,19 +23,13 @@ namespace PowerUP
 
         public void Connection()
         {
-           // string curFile = @"PointsDatabase.db";
-            //if (!File.Exists(curFile))
-            //{
+            string curFile = @"PointsDatabase.db";
+            if (!File.Exists(curFile))
+            {
+                SQLiteConnection.CreateFile("PointsDatabase.db");
+            }
 
-               SQLiteConnection.CreateFile("PointsDatabase.db");
-                
-                conn.Open();
-               // return false;
-            //}
-
-            //conn.Open();
-
-          //  return true;
+            conn.Open();
 
         }
 

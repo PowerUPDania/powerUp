@@ -37,7 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite">
-      <HintPath>C:\Users\Frederik\Desktop\Database filer til C#-projekter\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\..\..\..\Visual Studio 2015\Projects\Database opgave 2\Database opgave 2\bin\Debug\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
