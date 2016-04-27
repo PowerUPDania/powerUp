@@ -29,11 +29,24 @@ namespace PowerUP
             }
         }
 
-        public Project(int iD, string name, string description)
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+            }
+        }
+
+        public Project(int iD, string name)
         {
             this.description = description;
             this.ID = iD;
-            this.name = name;
+            this.Name = name;
         }
 
         public Project(int iD, string name, string description, string startdato, string slutdato)
@@ -42,7 +55,7 @@ namespace PowerUP
             this.startdato = startdato;
             this.slutdato = slutdato;
             this.ID = iD;
-            this.name = name;
+            this.Name = name;
             iterations = new List<Iteration>();
         }
     }
