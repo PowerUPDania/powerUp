@@ -29,8 +29,9 @@ namespace PowerUP
             }
         }
 
-        public Project(int iD, string name)
+        public Project(int iD, string name, string description)
         {
+            this.description = description;
             this.ID = iD;
             this.name = name;
         }
