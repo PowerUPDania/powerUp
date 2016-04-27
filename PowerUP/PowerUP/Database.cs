@@ -204,9 +204,6 @@ namespace PowerUP
 
         public void DeleteIteration(int projectID, int iterationID)
         {
-            String sql = "delete id, name, projektfil, type,  duration, startdato, slutdato from iteration where id = " + iterationID + "and projektfil = " + projectID + ";";
-            SQLiteCommand command = new SQLiteCommand(sql, conn);
-            command.ExecuteNonQuery();
             foreach (Project project in projects)
             {
                 if (project.ID1 == projectID)
@@ -215,6 +212,25 @@ namespace PowerUP
                     {
                         if (iteration.ID == iterationID)
                         {
+                            foreach (Graph graph in iteration.graphs)
+                            {
+                                foreach (graphPoint graphpoint in graph.pointCollection)
+                                {
+                                    
+                                    graph.pointCollection.ToList().Remove(graphpoint);
+                                }
+                                String sll = "delete graphid, xValue, yValue from point where graphid = " + graph.ID + ";";
+                                SQLiteCommand comand = new SQLiteCommand(sll, conn);
+                                comand.ExecuteNonQuery();
+                                iteration.graphs.ToList().Remove(graph);
+                            }
+                            String sql = "delete id, name, iteration from graf where iteration = " + iteration.ID + ";";
+                            SQLiteCommand command = new SQLiteCommand(sql, conn);
+                            command.ExecuteNonQuery();
+
+                            sql = "delete id, name, projektfil, type,  duration, startdato, slutdato from iteration where id = " + iterationID + "and projektfil = " + projectID + ";";
+                            command = new SQLiteCommand(sql, conn);
+                            command.ExecuteNonQuery();
                             project.iterations.ToList().Remove(iteration);
                         }
                     }
