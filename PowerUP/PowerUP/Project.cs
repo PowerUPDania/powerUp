@@ -44,6 +44,7 @@ namespace PowerUP
 
         public Project(int iD, string name)
         {
+            this.description = description;
             this.ID = iD;
             this.Name = name;
         }

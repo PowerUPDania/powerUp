@@ -11,14 +11,25 @@ namespace PowerUP
         private int iD;
         private int iterationID;
         private string name;
-        private int xValue;
-        private int yValue;
 
-        List<graphPoint> pointCollection;
+        public List<graphPoint> pointCollection;
+
+        public int ID
+        {
+            get
+            {
+                return iD;
+            }
+
+            set
+            {
+                iD = value;
+            }
+        }
 
         public Graph(int iD, string name, int iterationID)
         {
-            this.iD = iD;
+            this.ID = iD;
             this.name = name;
             this.iterationID = iterationID;
             pointCollection = new List<graphPoint>();
