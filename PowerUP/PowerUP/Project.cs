@@ -47,6 +47,7 @@ namespace PowerUP
             this.description = description;
             this.ID = iD;
             this.Name = name;
+            iterations = new List<Iteration>();
         }
 
         public Project(int iD, string name, string description, string startdato, string slutdato)

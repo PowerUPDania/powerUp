@@ -91,7 +91,7 @@ namespace PowerUP
         public void Loadprojectfile(int projectID)
         {
             Project localProject = new Project(projectID, "null", "null");
-            String sql = "select id, name, description, startdato, slutdato from projekfil where id = " + projectID + ";";
+            String sql = "select id, name, description, startdato, slutdato from projektfil where id = " + projectID + ";";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -105,7 +105,7 @@ namespace PowerUP
                 {
                     if (project.ID1 == ID)
                     {
-                        projects.ToList().Remove(project);
+                        projects.ToList().Clear();
                         localProject = new Project(ID, name, description, startdato, slutdato);
                         projects.ToList().Add(localProject);
                     }
@@ -177,6 +177,7 @@ namespace PowerUP
             {
                 if(project.ID1 == projectID)
                 {
+                    if(project.iterations.Count > 0)
                     foreach (Iteration iteration in project.iterations)
                     {
                         foreach (Graph graph in iteration.graphs)
@@ -185,23 +186,23 @@ namespace PowerUP
                             {
                                 graph.pointCollection.ToList().Remove(graphpoint);
                             }
-                            String sqll = "delete graphid, xValue, yValue from point where graphid = " + graph.ID + ");";
+                            String sqll = "delete from point where graphid = " + graph.ID + ";";
                             SQLiteCommand commandd = new SQLiteCommand(sqll, conn);
                             commandd.ExecuteNonQuery();
                             iteration.graphs.ToList().Remove(graph);
                         }
-                        String sqlll = "delete id, name, iteration from graf where iteration = " + iteration.ID + ");";
+                        String sqlll = "delete from graf where iteration = " + iteration.ID + ";";
                         SQLiteCommand commanddd = new SQLiteCommand(sqlll, conn);
                         commanddd.ExecuteNonQuery();
                         project.iterations.ToList().Remove(iteration);
                     }
-                    String sqllll = "delete id, name, projektfil, type, duration, startdato, slutdato from iteration where projektfil = " + projectID + ");";
+                    String sqllll = "delete from iteration where projektfil = " + projectID + ";";
                     SQLiteCommand commandddd = new SQLiteCommand(sqllll, conn);
                     commandddd.ExecuteNonQuery();
                     projects.ToList().Remove(project);
                 }
             }
-            String sql = "delete id, name, Description, startdato, slutdato from projektfil where id = " + projectID + ");";
+            String sql = "delete from projektfil where id = " + projectID + ";";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             command.ExecuteNonQuery();
         }
@@ -288,16 +289,16 @@ namespace PowerUP
                                     
                                     graph.pointCollection.ToList().Remove(graphpoint);
                                 }
-                                String sll = "delete graphid, xValue, yValue from point where graphid = " + graph.ID + ";";
+                                String sll = "delete from point where graphid = " + graph.ID + ";";
                                 SQLiteCommand comand = new SQLiteCommand(sll, conn);
                                 comand.ExecuteNonQuery();
                                 iteration.graphs.ToList().Remove(graph);
                             }
-                            String sql = "delete id, name, iteration from graf where iteration = " + iteration.ID + ";";
+                            String sql = "delete from graf where iteration = " + iteration.ID + ";";
                             SQLiteCommand command = new SQLiteCommand(sql, conn);
                             command.ExecuteNonQuery();
 
-                            sql = "delete id, name, projektfil, type,  duration, startdato, slutdato from iteration where id = " + iterationID + "and projektfil = " + projectID + ";";
+                            sql = "delete from iteration where id = " + iterationID + "and projektfil = " + projectID + ";";
                             command = new SQLiteCommand(sql, conn);
                             command.ExecuteNonQuery();
                             project.iterations.ToList().Remove(iteration);

@@ -13,14 +13,14 @@ namespace PowerUP
 {
     public partial class Form1 : Form
     {
-       DateTime startTime;
+        DateTime startTime;
         DateTime endTime;
-       double total ;
+        double total;
         int totalSecleted;
         List<string> yvalue = new List<string>();
         Database database;
 
-       
+
         public Form1()
         {
             InitializeComponent();
@@ -51,13 +51,13 @@ namespace PowerUP
             int count = database.projects.Count();
             for (int i = 0; i < 18; i++)
             {
-            Label lbl = new Label();
-                if (i <=5)
+                Label lbl = new Label();
+                if (i <= 5)
                 {
 
-            lbl.Location = new Point(10, i * 60);
+                    lbl.Location = new Point(10, i * 60);
                 }
-                else if (i > 5 && i <=11)
+                else if (i > 5 && i <= 11)
                 {
                     int yakse = i - 6;
                     lbl.Location = new Point(350, yakse * 60);
@@ -67,25 +67,33 @@ namespace PowerUP
                     int yakse = i - 12;
                     lbl.Location = new Point(700, yakse * 60);
                 }
-                if (count-1 >= i)
+                if (count - 1 >= i)
                 {
                     lbl.Text = database.projects[i].Name;
-                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; };
+                    foreach (Project project in database.projects)
+                    {
+                        if (lbl.Text == project.Name)
+                        {
+                            int id = project.ID1;
+                            database.Loadprojectfile(id);
+                        }
+                    }
+                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; label4.Text = lbl.Text; };
                 }
                 else
                 {
-                lbl.Text = "Create New Project";
-                lbl.Click += delegate { pagecontrol.SelectedTab = tabPage4; };
+                    lbl.Text = "Create New Project";
+                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage4; };
                 }
                 lbl.BackColor = Color.LightGray;
                 lbl.Width = 300;
                 lbl.Height = 50;
                 panel1.Controls.Add(lbl);
-             
+
             }
 
-            
-           
+
+
 
 
             //for (int i = 0; i < 6; i++)
@@ -149,11 +157,12 @@ namespace PowerUP
         private void button7_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage5;
-             string projectName=textBox1.Text;
+            string projectName = textBox1.Text;
             string projectDescription = textBox2.Text;
             string startDate = dateTimePicker1.Value.ToShortDateString();
             string endDate = dateTimePicker4.Value.ToShortDateString();
-            database.CreateProject(projectName,projectDescription,startDate,endDate);
+            database.CreateProject(projectName, projectDescription, startDate, endDate);
+            label4.Text = textBox1.Text;
         }
         #endregion
         #region projectView
@@ -189,7 +198,8 @@ namespace PowerUP
                 if (count - 1 >= i)
                 {
                     lbl.Text = database.projects[i].Name;
-                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; };
+                    //  var derp= database.projects[i].ID1;
+                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; label4.Text = lbl.Text; };
                 }
                 else
                 {
@@ -203,7 +213,7 @@ namespace PowerUP
 
             }
 
-            
+
 
             pagecontrol.SelectedTab = tabPage3;
         }
@@ -215,6 +225,9 @@ namespace PowerUP
 
         private void button10_Click(object sender, EventArgs e)
         {
+            // her puha 
+
+             database.DeleteProject(database.projects[0].ID1);
 
         }
         private void button11_Click(object sender, EventArgs e)
@@ -247,7 +260,7 @@ namespace PowerUP
         {
             int Index = listBox2.SelectedIndex;     //Selected Index
             object Swap = listBox2.SelectedItem;   //Selected Item
-            if (Index < listBox2.Items.Count && Index +1 != listBox2.Items.Count)
+            if (Index < listBox2.Items.Count && Index + 1 != listBox2.Items.Count)
             {        //If something is selected...
                 listBox2.Items.RemoveAt(Index);         //Remove it
                 listBox2.Items.Insert(Index + 1, Swap);    //Add it back in one spot up
@@ -257,13 +270,13 @@ namespace PowerUP
         }
         private void button17_Click(object sender, EventArgs e)
         {
-            
+
             pagecontrol.SelectedTab = tabPage7;
-          string data= listBox2.SelectedItem.ToString();
-         string removedStuff=  data.Substring(0, data.Length - 26);
+            string data = listBox2.SelectedItem.ToString();
+            string removedStuff = data.Substring(0, data.Length - 26);
             if (data.Contains("Inception"))
             {
-            removedStuff=      removedStuff.Substring(12);
+                removedStuff = removedStuff.Substring(12);
             }
             if (data.Contains("Elaboration"))
             {
@@ -284,30 +297,30 @@ namespace PowerUP
 
         private void button12_Click(object sender, EventArgs e)
         {
-           
+
             if (textBox3.Text != null)
             {
-               if( checkBox1.Checked==true)
+                if (checkBox1.Checked == true)
                 {
-                total = 1+(endTime - startTime).TotalDays;
-                        
-                }
-               else if (checkBox1.Checked == false )
-                {
-               total =
-       1 + ((endTime - startTime).TotalDays * 5 -
-       (startTime.DayOfWeek - endTime.DayOfWeek) * 2) / 7;
+                    total = 1 + (endTime - startTime).TotalDays;
 
-                if ((int)endTime.DayOfWeek == 6) total--;
-                if ((int)startTime.DayOfWeek == 0) total--;
+                }
+                else if (checkBox1.Checked == false)
+                {
+                    total =
+            1 + ((endTime - startTime).TotalDays * 5 -
+            (startTime.DayOfWeek - endTime.DayOfWeek) * 2) / 7;
+
+                    if ((int)endTime.DayOfWeek == 6) total--;
+                    if ((int)startTime.DayOfWeek == 0) total--;
 
                 }
 
                 //string derp = startTime.ToString();
-              string  startDate = dateTimePicker2.Value.ToShortDateString();
+                string startDate = dateTimePicker2.Value.ToShortDateString();
                 string endDate = dateTimePicker3.Value.ToShortDateString();
                 string iterationName = textBox3.Text;
-                listBox2.Items.Add(listBox1.SelectedItem + " : " + iterationName + " : " +startDate + " : " +endDate);
+                listBox2.Items.Add(listBox1.SelectedItem + " : " + iterationName + " : " + startDate + " : " + endDate);
             }
         }
 
@@ -319,8 +332,8 @@ namespace PowerUP
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-         startTime=   dateTimePicker2.Value.Date;
-          
+            startTime = dateTimePicker2.Value.Date;
+
 
         }
         private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
@@ -330,8 +343,8 @@ namespace PowerUP
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-           
-            
+
+
         }
         #endregion
         #region iterationEditer
@@ -345,9 +358,9 @@ namespace PowerUP
 
         private void button19_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex!=0)
+            if (tabControl1.SelectedIndex != 0)
             {
-            tabControl1.SelectedIndex--;
+                tabControl1.SelectedIndex--;
 
             }
 
@@ -389,17 +402,17 @@ namespace PowerUP
             }
         }
 
-            int maxinout = 0;
+        int maxinout = 0;
         private void button21_Click(object sender, EventArgs e)
         {
-            
-            if (textBox4.Text !="" && maxinout <= total)
+
+            if (textBox4.Text != "" && maxinout <= total)
             {
                 string derp = textBox4.Text;
                 yvalue.Add(derp);
                 maxinout++;
             }
-            
+
         }
 
         private void button24_Click(object sender, EventArgs e)
@@ -464,7 +477,7 @@ namespace PowerUP
             //var d = "chart5";
 
             //derp(d);
-               chart4.Series.Clear();
+            chart4.Series.Clear();
             chart4.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
 
             chart4.ChartAreas[0].AxisX.IsMarginVisible = false;
