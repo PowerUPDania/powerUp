@@ -307,7 +307,7 @@ namespace PowerUP
             }
         }
 
-        public void SavePoint(int projectID, int graphID, int yValue)
+        public void SavePoint(int projectID, int graphID, int yValue, int Total)
         {
             foreach (Project project in projects)
             {
@@ -319,12 +319,16 @@ namespace PowerUP
                         {
                             if(graph.ID == graphID)
                             {
-                                graph.MaxXValue++;
-                                graph.pointCollection.Add(new graphPoint(graph.MaxXValue, yValue, graphID));
+                                if(Total > graph.MaxXValue)
+                                {
+                                    graph.MaxXValue++;
+                                    graph.pointCollection.Add(new graphPoint(graph.MaxXValue, yValue, graphID));
 
-                                String sql = "insert into Point values(" + graphID + ", " + graph.MaxXValue + "," + yValue + ");";
-                                SQLiteCommand command = new SQLiteCommand(sql, conn);
-                                command.ExecuteNonQuery();
+                                    String sql = "insert into Point values(" + graphID + ", " + graph.MaxXValue + "," + yValue + ");";
+                                    SQLiteCommand command = new SQLiteCommand(sql, conn);
+                                    command.ExecuteNonQuery();
+
+                                }
                             }
                         }
                     }
