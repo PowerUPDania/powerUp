@@ -40,13 +40,34 @@ namespace PowerUP
         private void button1_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage3;
+            database.projects.Clear();
             database.LoadProjects();
-           database.projects.Count();
-            for (int i = 0; i < 6; i++)
+            panel1.Controls.Clear();
+            Button back = new Button();
+            back.Location = new Point(3, 394);
+            back.Click += delegate { pagecontrol.SelectedTab = tabPage1; };
+            back.Text = "back";
+            panel1.Controls.Add(back);
+            int count = database.projects.Count();
+            for (int i = 0; i < 18; i++)
             {
             Label lbl = new Label();
+                if (i <=5)
+                {
+
             lbl.Location = new Point(10, i * 60);
-                if (database.projects.Count() >= i)
+                }
+                else if (i > 5 && i <=11)
+                {
+                    int yakse = i - 6;
+                    lbl.Location = new Point(350, yakse * 60);
+                }
+                else
+                {
+                    int yakse = i - 12;
+                    lbl.Location = new Point(700, yakse * 60);
+                }
+                if (count-1 >= i)
                 {
                     lbl.Text = database.projects[i].Name;
                     lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; };
@@ -62,28 +83,25 @@ namespace PowerUP
                 panel1.Controls.Add(lbl);
              
             }
-           
-                
-                    foreach (var item in database.projects)
-                {
-                
-                Label lbl = new Label();
-                lbl.Location = new Point(350, 1 * 60);
-                lbl.Text = item.Name;
-                lbl.BackColor = Color.LightGray;
-                lbl.Width = 300;
-                lbl.Height = 50;
-                lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; };
-                panel1.Controls.Add(lbl);
-
-                }
 
             
+           
+
+
             //for (int i = 0; i < 6; i++)
             //{
             //    Label lbl = new Label();
             //    lbl.Location = new Point(350, i * 60);
-            //    lbl.Text = "Create New Project";
+            //    if (count - 1 >= i)
+            //    {
+            //        lbl.Text = database.projects[i+5].Name;
+            //        lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; };
+            //    }
+            //    else
+            //    {
+            //        lbl.Text = "Create New Project";
+            //        lbl.Click += delegate { pagecontrol.SelectedTab = tabPage4; };
+            //    }
             //    lbl.BackColor = Color.LightGray;
             //    lbl.Width = 300;
             //    lbl.Height = 50;
@@ -141,6 +159,52 @@ namespace PowerUP
         #region projectView
         private void button9_Click(object sender, EventArgs e)
         {
+            database.projects.Clear();
+            database.LoadProjects();
+            panel1.Controls.Clear();
+            Button back = new Button();
+            back.Location = new Point(3, 394);
+            back.Click += delegate { pagecontrol.SelectedTab = tabPage1; };
+            back.Text = "back";
+            panel1.Controls.Add(back);
+            int count = database.projects.Count();
+            for (int i = 0; i < 18; i++)
+            {
+                Label lbl = new Label();
+                if (i <= 5)
+                {
+
+                    lbl.Location = new Point(10, i * 60);
+                }
+                else if (i > 5 && i <= 11)
+                {
+                    int yakse = i - 6;
+                    lbl.Location = new Point(350, yakse * 60);
+                }
+                else
+                {
+                    int yakse = i - 12;
+                    lbl.Location = new Point(700, yakse * 60);
+                }
+                if (count - 1 >= i)
+                {
+                    lbl.Text = database.projects[i].Name;
+                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; };
+                }
+                else
+                {
+                    lbl.Text = "Create New Project";
+                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage4; };
+                }
+                lbl.BackColor = Color.LightGray;
+                lbl.Width = 300;
+                lbl.Height = 50;
+                panel1.Controls.Add(lbl);
+
+            }
+
+            
+
             pagecontrol.SelectedTab = tabPage3;
         }
 
@@ -415,6 +479,11 @@ namespace PowerUP
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
