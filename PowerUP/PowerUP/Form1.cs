@@ -40,42 +40,68 @@ namespace PowerUP
         private void button1_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage3;
-          
+            database.LoadProjects();
+           database.projects.Count();
             for (int i = 0; i < 6; i++)
             {
             Label lbl = new Label();
             lbl.Location = new Point(10, i * 60);
+                if (database.projects.Count() >= i)
+                {
+                    lbl.Text = database.projects[i].Name;
+                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; };
+                }
+                else
+                {
                 lbl.Text = "Create New Project";
+                lbl.Click += delegate { pagecontrol.SelectedTab = tabPage4; };
+                }
                 lbl.BackColor = Color.LightGray;
                 lbl.Width = 300;
                 lbl.Height = 50;
-                lbl.Click += delegate { pagecontrol.SelectedTab = tabPage4; };
                 panel1.Controls.Add(lbl);
              
             }
-            for (int i = 0; i < 6; i++)
-            {
+           
+                
+                    foreach (var item in database.projects)
+                {
+                
                 Label lbl = new Label();
-                lbl.Location = new Point(350, i * 60);
-                lbl.Text = "Create New Project";
+                lbl.Location = new Point(350, 1 * 60);
+                lbl.Text = item.Name;
                 lbl.BackColor = Color.LightGray;
                 lbl.Width = 300;
                 lbl.Height = 50;
-               
+                lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; };
                 panel1.Controls.Add(lbl);
 
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                Label lbl = new Label();
-                lbl.Location = new Point(700, i * 60);
-                lbl.Text = "Create New Project";
-                lbl.BackColor = Color.LightGray;
-                lbl.Width = 300;
-                lbl.Height = 50;
-                panel1.Controls.Add(lbl);
+                }
 
-            }
+            
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    Label lbl = new Label();
+            //    lbl.Location = new Point(350, i * 60);
+            //    lbl.Text = "Create New Project";
+            //    lbl.BackColor = Color.LightGray;
+            //    lbl.Width = 300;
+            //    lbl.Height = 50;
+
+            //    panel1.Controls.Add(lbl);
+
+            //}
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    Label lbl = new Label();
+            //    lbl.Location = new Point(700, i * 60);
+            //    lbl.Text = "Create New Project";
+            //    lbl.BackColor = Color.LightGray;
+            //    lbl.Width = 300;
+            //    lbl.Height = 50;
+            //    panel1.Controls.Add(lbl);
+
+            //}
         }
 
         private void button3_Click(object sender, EventArgs e)

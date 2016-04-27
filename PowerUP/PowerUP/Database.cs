@@ -12,13 +12,13 @@ namespace PowerUP
     {
         static String connStr = "Data Source=PointsDatabase.db;Version=3";
         SQLiteConnection conn = new SQLiteConnection(connStr);
-        List<Project> projects;
+      public  List<Project> projects;
 
         public Database()
         {
             projects = new List<Project>();
             Connection();
-            CreateTable();
+           // CreateTable();
         }
 
         public void Connection()
