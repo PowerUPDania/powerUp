@@ -135,10 +135,25 @@ namespace PowerUP
                     int ID = Convert.ToInt32(reader["id"]);
                     string name = (string)(reader["name"]);
                     int iterationID = (int)(reader["iteration"]);
-                    iteration.graphs.Add(new Graph(ID, name, iterationID));
+                    Graph localGraph = new Graph(ID, name, iterationID);
+                    iteration.graphs.Add(localGraph);
                 }
-
+                foreach (Graph graph in iteration.graphs)
+                {
+                    sql = "select graphID, xValue, yValue from point where graphID = " + graph.ID + ";";
+                    command = new SQLiteCommand(sql, conn);
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int graphID = Convert.ToInt32(reader["graphID"]);
+                        int xValue = (int)(reader["xValue"]);
+                        int yValue = (int)(reader["yValue"]);
+                        graph.MaxXValue++;
+                        graph.pointCollection.Add(new graphPoint(xValue,yValue, graphID));
+                    }
+                }
             }
+            
         }
 
         public void CreateProject(string name, string description, string startdato, string slutdato)
@@ -193,6 +208,7 @@ namespace PowerUP
 
         public void CreateIteration(int projectID, string name, string type, int duration, string startdato, string slutdato)
         {
+            Iteration localIteration = new Iteration(1,"null", 1,"null",1,"null","null");
             String sql = "insert into iteration values(null,'" + name + "'," + projectID + ",'" + type + "'," + duration + ",'" + startdato + "','" + slutdato + "')";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             command.ExecuteNonQuery();
@@ -209,9 +225,50 @@ namespace PowerUP
             {
                 if (project.ID1 == projectID)
                 {
-                    project.iterations.Add(new Iteration(ID, name, projectID, type, duration, startdato, slutdato));
+                    localIteration = new Iteration(ID, name, projectID, type, duration, startdato, slutdato);
+                    project.iterations.Add(localIteration);
                 }
             }
+            
+            sql = "insert into graf values(null, 'Business Model'," + localIteration.ID + ")";
+            command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+            sql = "insert into graf values(null, 'Requirements'," + localIteration.ID + ")";
+            command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+            sql = "insert into graf values(null, 'Analyse and Design'," + localIteration.ID + ")";
+            command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+            sql = "insert into graf values(null, 'Implementation'," + localIteration.ID + ")";
+            command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+            sql = "insert into graf values(null, 'Test'," + localIteration.ID + ")";
+            command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+            sql = "insert into graf values(null, 'Deployment'," + localIteration.ID + ")";
+            command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+            sql = "insert into graf values(null, 'Configuration and Change Management'," + localIteration.ID + ")";
+            command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+            sql = "insert into graf values(null, 'Project Management'," + localIteration.ID + ")";
+            command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+            sql = "insert into graf values(null, 'Environment'," + localIteration.ID + ")";
+            command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+
+            sql = "Select id, name, iteration from graf where iteration = " + localIteration.ID + "');";
+            command = new SQLiteCommand(sql, conn);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int graphID = Convert.ToInt32(reader["id"]);
+                string graphName = (string)(reader["name"]);
+                int iterationID = (int)(reader["iteration"]);
+                localIteration.graphs.Add(new Graph(graphID, graphName, iterationID));
+            }
+
         }
 
         public void DeleteIteration(int projectID, int iterationID)
@@ -250,9 +307,33 @@ namespace PowerUP
             }
         }
 
-        public void SavePoint(int graphID, int yValue)
+        public void SavePoint(int projectID, int graphID, int yValue, int Total)
         {
+            foreach (Project project in projects)
+            {
+                if(project.ID1 == projectID)
+                {
+                    foreach (Iteration iteration in project.iterations)
+                    {
+                        foreach (Graph graph in iteration.graphs)
+                        {
+                            if(graph.ID == graphID)
+                            {
+                                if(Total > graph.MaxXValue)
+                                {
+                                    graph.MaxXValue++;
+                                    graph.pointCollection.Add(new graphPoint(graph.MaxXValue, yValue, graphID));
 
+                                    String sql = "insert into Point values(" + graphID + ", " + graph.MaxXValue + "," + yValue + ");";
+                                    SQLiteCommand command = new SQLiteCommand(sql, conn);
+                                    command.ExecuteNonQuery();
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

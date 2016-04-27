@@ -11,6 +11,7 @@ namespace PowerUP
         private int iD;
         private int iterationID;
         private string name;
+        private int maxXValue = -1;
 
         public List<graphPoint> pointCollection;
 
@@ -24,6 +25,19 @@ namespace PowerUP
             set
             {
                 iD = value;
+            }
+        }
+
+        public int MaxXValue
+        {
+            get
+            {
+                return maxXValue;
+            }
+
+            set
+            {
+                maxXValue = value;
             }
         }
 
