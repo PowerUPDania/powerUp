@@ -75,7 +75,7 @@ namespace PowerUP
         {
 
 
-            String sql = "select id, name from projekfil;";
+            String sql = "select id, name from projektfil;";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -181,11 +181,11 @@ namespace PowerUP
 
         public void CreateIteration(int projectID, string name, string type, int duration, string startdato, string slutdato)
         {
-            String sql = "insert into iteration values(null," + name + "," + projectID + "," + type + "," + duration + "," + startdato + "," + slutdato + ")";
+            String sql = "insert into iteration values(null,'" + name + "'," + projectID + ",'" + type + "'," + duration + ",'" + startdato + "','" + slutdato + "')";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             command.ExecuteNonQuery();
 
-            sql = "Select id from iteration where projektfil = " + projectID + " and name = " + name + ");";
+            sql = "Select id from iteration where projektfil = " + projectID + " and name = '" + name + "');";
             command = new SQLiteCommand(sql, conn);
             SQLiteDataReader reader = command.ExecuteReader();
             int ID = 10000;
