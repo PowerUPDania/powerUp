@@ -30,7 +30,7 @@ namespace PowerUP
             if (database.Connection() != true)
             {
                 database.CreateTable();
-               
+
             }
         }
         #region Startside
@@ -74,14 +74,18 @@ namespace PowerUP
                 if (count - 1 >= i)
                 {
                     lbl.Text = database.projects[i].Name;
-                    //foreach (Project project in database.projects)
-                    //{
-                    //        database.Loadprojectfile(project.Name);
-                    //}
-                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5;
-                                              label4.Text = lbl.Text; database.Loadprojectfile(label4.Text);
-                                              label30.Text = database.projects[0].Description;
+                    lbl.Click += delegate
+                    {
+                        pagecontrol.SelectedTab = tabPage6;
+                        database.Loadprojectfile(label4.Text);
+                        label31.Text = lbl.Text;
                     };
+                    //lbl.Click += delegate
+                    //{
+                    //    pagecontrol.SelectedTab = tabPage5;
+                    //    label4.Text = lbl.Text; database.Loadprojectfile(label4.Text);
+                    //    label30.Text = database.projects[0].Description;
+                    //};
                 }
                 else
                 {
@@ -202,7 +206,7 @@ namespace PowerUP
                 {
                     lbl.Text = database.projects[i].Name;
                     //  var derp= database.projects[i].ID1;
-                   
+
                     lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; label4.Text = lbl.Text; };
                 }
                 else
@@ -231,7 +235,7 @@ namespace PowerUP
         {
             // her puha 
 
-             database.DeleteProject(database.projects[0].ID1);
+            database.DeleteProject(database.projects[0].ID1);
 
         }
         private void button11_Click(object sender, EventArgs e)
@@ -325,6 +329,7 @@ namespace PowerUP
                 string endDate = dateTimePicker3.Value.ToShortDateString();
                 string iterationName = textBox3.Text;
                 listBox2.Items.Add(listBox1.SelectedItem + " : " + iterationName + " : " + startDate + " : " + endDate);
+                database.CreateIteration(database.localProject.ID1, iterationName, listBox1.SelectedItem.ToString(), (int)total, startDate, endDate);
             }
         }
 
@@ -506,6 +511,11 @@ namespace PowerUP
         }
 
         private void label30_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label31_Click(object sender, EventArgs e)
         {
 
         }

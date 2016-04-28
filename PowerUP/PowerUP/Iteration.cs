@@ -17,6 +17,7 @@ namespace PowerUP
         private string startdato;
         private string slutdato;
         private int maxXValue;
+        private int internIndex;
 
         public List<Graph> graphs;
 
@@ -46,7 +47,13 @@ namespace PowerUP
             }
         }
 
-        public Iteration(int iD, string name, int projektfil, string type, int duration, string startdato, string slutdato)
+        public int InternIndex
+        {
+            get { return internIndex; }
+            set { internIndex = value; }
+        }
+
+        public Iteration(int iD, string name, int projektfil, string type, int duration, string startdato, string slutdato, int internIndex)
         {
             this.ID = iD;
             this.name = name;
@@ -55,6 +62,7 @@ namespace PowerUP
             this.duration = duration;
             this.startdato = startdato;
             this.slutdato = slutdato;
+            this.internIndex = internIndex;
             graphs = new List<Graph>();
             MaxXValue = -1;
         }
