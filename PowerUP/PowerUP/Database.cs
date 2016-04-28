@@ -358,15 +358,18 @@ namespace PowerUP
             return duration;
         }
 
-        public void GetGraphPoints(string graphType, int iterationID)
+        public List<int> GetGraphPoints(string graphType, int iterationID)
         {
-            String sql = "select duration from iteration where name = '" + name + "';";
+            List<int> datalist = new List<int>();
+            String sql = "select yValue from Graf where name = '" + graphType + "' and iteration = "+ iterationID + ";";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                duration = Convert.ToInt32(reader["duration"]);
+                int yValue = Convert.ToInt32(reader["yValue"]);
+                datalist.Add(yValue);
             }
+            return datalist;
         }
         //public void SavePoint(int projectID, int graphID, int yValue, int Total)
         //{
