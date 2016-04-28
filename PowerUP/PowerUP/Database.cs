@@ -220,7 +220,7 @@ namespace PowerUP
         public void CreateIteration(int projectID, string name, string type, int duration, string startdato, string slutdato)
         {
             //Iteration localIteration = new Iteration(1, "null", 1, "null", 1, "null", "null");
-            String sql = "insert into iteration values(null,'" + name + "'," + projectID + ",'" + type + "'," + duration + ",'" + startdato + "','" + slutdato + "')";
+            String sql = "insert into iteration values(null,'" + name + "'," + projectID + ",'" + type + "'," + duration + ",'" + startdato + "','" + slutdato + "', null)";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             command.ExecuteNonQuery();
 

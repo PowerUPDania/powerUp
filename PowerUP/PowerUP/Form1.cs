@@ -76,9 +76,9 @@ namespace PowerUP
                     lbl.Text = database.projects[i].Name;
                     lbl.Click += delegate
                     {
-                        pagecontrol.SelectedTab = tabPage6;
+                        pagecontrol.SelectedTab = tabPage5;
+                        label4.Text = lbl.Text;
                         database.Loadprojectfile(label4.Text);
-                        label31.Text = lbl.Text;
                     };
                     //lbl.Click += delegate
                     //{
@@ -163,13 +163,14 @@ namespace PowerUP
 
         private void button7_Click(object sender, EventArgs e)
         {
-            pagecontrol.SelectedTab = tabPage5;
+            pagecontrol.SelectedTab = tabPage6;
             string projectName = textBox1.Text;
             string projectDescription = textBox2.Text;
             string startDate = dateTimePicker1.Value.ToShortDateString();
             string endDate = dateTimePicker4.Value.ToShortDateString();
             database.CreateProject(projectName, projectDescription, startDate, endDate);
             label4.Text = textBox1.Text;
+            label31.Text = projectName;
         }
         #endregion
         #region projectView
@@ -329,7 +330,7 @@ namespace PowerUP
                 string endDate = dateTimePicker3.Value.ToShortDateString();
                 string iterationName = textBox3.Text;
                 listBox2.Items.Add(listBox1.SelectedItem + " : " + iterationName + " : " + startDate + " : " + endDate);
-                database.CreateIteration(database.localProject.ID1, iterationName, listBox1.SelectedItem.ToString(), (int)total, startDate, endDate);
+                database.CreateIteration(database.projects[0].ID1, iterationName, listBox1.SelectedItem.ToString(), (int)total, startDate, endDate);
             }
         }
 
