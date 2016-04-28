@@ -325,33 +325,75 @@ namespace PowerUP
             }
         }
 
-        public void SavePoint(int projectID, int graphID, int yValue, int Total)
+        public void SavePoint(int yValue, int iterationID, string graphType, int maxXValue)
         {
-            foreach (Project project in projects)
+            String sql = "insert into graf values (null, '" + graphType + "', " + maxXValue + "," + yValue + "," + iterationID + ");";
+            SQLiteCommand command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+        }
+
+        public int GetIterationID(string name)
+        {
+            int tempID = 0;
+            String sql = "select id from iteration where name = '" + name + "';";
+            SQLiteCommand command = new SQLiteCommand(sql, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                if (project.ID1 == projectID)
-                {
-                    foreach (Iteration iteration in project.iterations)
-                    {
-                        foreach (Graph graph in iteration.graphs)
-                        {
-                            if (graph.ID == graphID)
-                            {
-                                if (Total > graph.MaxXValue)
-                                {
-                                    graph.MaxXValue++;
-                                    graph.pointCollection.Add(new graphPoint(graph.MaxXValue, yValue, graphID));
+                tempID = Convert.ToInt32(reader["id"]);
+            }
+            return tempID;
+        }
 
-                                    String sql = "insert into Point values(" + graphID + ", " + graph.MaxXValue + "," + yValue + ");";
-                                    SQLiteCommand command = new SQLiteCommand(sql, conn);
-                                    command.ExecuteNonQuery();
+        public int GetDuration(string name)
+        {
+            int duration = 0;
+            String sql = "select duration from iteration where name = '" + name + "';";
+            SQLiteCommand command = new SQLiteCommand(sql, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                duration = Convert.ToInt32(reader["duration"]);
+            }
+            return duration;
+        }
 
-                                }
-                            }
-                        }
-                    }
-                }
+        public void GetGraphPoints(string graphType, int iterationID)
+        {
+            String sql = "select duration from iteration where name = '" + name + "';";
+            SQLiteCommand command = new SQLiteCommand(sql, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                duration = Convert.ToInt32(reader["duration"]);
             }
         }
+        //public void SavePoint(int projectID, int graphID, int yValue, int Total)
+        //{
+        //    foreach (Project project in projects)
+        //    {
+        //        if (project.ID1 == projectID)
+        //        {
+        //            foreach (Iteration iteration in project.iterations)
+        //            {
+        //                foreach (Graph graph in iteration.graphs)
+        //                {
+        //                    if (graph.ID == graphID)
+        //                    {
+        //                        if (Total > graph.MaxXValue)
+        //                        {
+        //                            graph.MaxXValue++;
+        //                            graph.pointCollection.Add(new graphPoint(graph.MaxXValue, yValue, graphID));
+
+        //                            String sql = "insert into Point values(" + graphID + ", " + graph.MaxXValue + "," + yValue + ");";
+        //                            SQLiteCommand command = new SQLiteCommand(sql, conn);
+        //                            command.ExecuteNonQuery();
+
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
     }
 }

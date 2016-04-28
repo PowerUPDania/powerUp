@@ -3,6 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace PowerUP
         DateTime startTime;
         DateTime endTime;
         double total;
-        int totalSecleted;
+        int totalSelected;
         List<string> yvalue = new List<string>();
         Database database;
 
@@ -343,7 +344,8 @@ namespace PowerUP
                     removedStuff = removedStuff.Substring(13);
                 }
                 label9.Text = removedStuff;
-                totalSecleted = Convert.ToInt32(listBox2.SelectedIndex.Equals(total));
+                totalSelected = database.GetDuration(label9.Text);
+                //totalSelected = Convert.ToInt32(listBox2.SelectedIndex.Equals(total));
             }
 
         }
@@ -494,10 +496,10 @@ namespace PowerUP
         private void button21_Click(object sender, EventArgs e)
         {
 
-            if (textBox4.Text != "" && maxinout <= total)
+            if (textBox4.Text != "" && maxinout <= totalSelected)
             {
                 string derp = textBox4.Text;
-                yvalue.Add(derp);
+                database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label12.Text, maxinout);
                 maxinout++;
             }
 
@@ -526,7 +528,7 @@ namespace PowerUP
         }
         private void button22_Click(object sender, EventArgs e)
         {
-            if (textBox5.Text != "" && maxinout <= total)
+            if (textBox5.Text != "" && maxinout <= totalSelected)
             {
                 string derp = textBox5.Text;
                 yvalue.Add(derp);
@@ -552,11 +554,12 @@ namespace PowerUP
 
         private void button23_Click(object sender, EventArgs e)
         {
-            if (textBox6.Text != "" && maxinout <= total)
+            if (textBox6.Text != "" && maxinout <= totalSelected)
             {
                 string derp = textBox6.Text;
-                yvalue.Add(derp);
+                database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label12.Text, maxinout);
                 maxinout++;
+
             }
         }
 
