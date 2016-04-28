@@ -19,6 +19,7 @@ namespace PowerUP
         DateTime endTime;
         double total;
         int totalSelected;
+        private int maxinout;
         List<int> yValues = new List<int>();
         Database database;
 
@@ -26,8 +27,12 @@ namespace PowerUP
         public Form1()
         {
             InitializeComponent();
-            pagecontrol.Appearance = TabAppearance.FlatButtons; pagecontrol.ItemSize = new Size(0, 1); pagecontrol.SizeMode = TabSizeMode.Fixed;
-            tabControl1.Appearance = TabAppearance.FlatButtons; tabControl1.ItemSize = new Size(0, 1); tabControl1.SizeMode = TabSizeMode.Fixed;
+            pagecontrol.Appearance = TabAppearance.FlatButtons;
+            pagecontrol.ItemSize = new Size(0, 1);
+            pagecontrol.SizeMode = TabSizeMode.Fixed;
+            tabControl1.Appearance = TabAppearance.FlatButtons;
+            tabControl1.ItemSize = new Size(0, 1);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
             database = new Database();
             if (database.Connection() != true)
             {
@@ -35,6 +40,7 @@ namespace PowerUP
 
             }
         }
+
         #region Startside
 
         private void button2_Click(object sender, EventArgs e)
@@ -143,21 +149,29 @@ namespace PowerUP
         {
             Environment.Exit(0);
         }
+
         #endregion
+
         #region instructions
+
         private void button4_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage1;
         }
+
         #endregion
+
         #region projectPage
+
         private void button5_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage1;
         }
+
         #endregion
 
         #region createProject
+
         private void button6_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage3;
@@ -178,11 +192,15 @@ namespace PowerUP
             database.LoadIterations(database.projects[0].ID1);
             foreach (var iteration in database.projects[0].iterations)
             {
-                listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " + iteration.Slutdato);
+                listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " +
+                                   iteration.Slutdato);
             }
         }
+
         #endregion
+
         #region projectView
+
         private void button9_Click(object sender, EventArgs e)
         {
             database.projects.Clear();
@@ -217,7 +235,11 @@ namespace PowerUP
                     lbl.Text = database.projects[i].Name;
                     //  var derp= database.projects[i].ID1;
 
-                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; label4.Text = lbl.Text; };
+                    lbl.Click += delegate
+                    {
+                        pagecontrol.SelectedTab = tabPage5;
+                        label4.Text = lbl.Text;
+                    };
                 }
                 else
                 {
@@ -245,7 +267,8 @@ namespace PowerUP
             database.LoadIterations(database.projects[0].ID1);
             foreach (var iteration in database.projects[0].iterations)
             {
-                listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " + iteration.Slutdato);
+                listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " +
+                                   iteration.Slutdato);
             }
         }
 
@@ -256,12 +279,16 @@ namespace PowerUP
             database.DeleteProject(database.projects[0].ID1);
 
         }
+
         private void button11_Click(object sender, EventArgs e)
         {
 
         }
+
         #endregion
+
         #region createIteration
+
         private void button14_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage5;
@@ -297,29 +324,32 @@ namespace PowerUP
 
         private void button15_Click(object sender, EventArgs e)
         {
-            int Index = listBox2.SelectedIndex;     //Selected Index
-            object Swap = listBox2.SelectedItem;   //Selected Item
+            int Index = listBox2.SelectedIndex; //Selected Index
+            object Swap = listBox2.SelectedItem; //Selected Item
             if (Index < listBox2.Items.Count && Index != 0)
-            {        //If something is selected...
-                listBox2.Items.RemoveAt(Index);         //Remove it
-                listBox2.Items.Insert(Index - 1, Swap);    //Add it back in one spot up
-                listBox2.SelectedItem = Swap;          //Keep this item selected
+            {
+                //If something is selected...
+                listBox2.Items.RemoveAt(Index); //Remove it
+                listBox2.Items.Insert(Index - 1, Swap); //Add it back in one spot up
+                listBox2.SelectedItem = Swap; //Keep this item selected
 
             }
         }
 
         private void button16_Click(object sender, EventArgs e)
         {
-            int Index = listBox2.SelectedIndex;     //Selected Index
-            object Swap = listBox2.SelectedItem;   //Selected Item
+            int Index = listBox2.SelectedIndex; //Selected Index
+            object Swap = listBox2.SelectedItem; //Selected Item
             if (Index < listBox2.Items.Count && Index + 1 != listBox2.Items.Count)
-            {        //If something is selected...
-                listBox2.Items.RemoveAt(Index);         //Remove it
-                listBox2.Items.Insert(Index + 1, Swap);    //Add it back in one spot up
-                listBox2.SelectedItem = Swap;          //Keep this item selected
+            {
+                //If something is selected...
+                listBox2.Items.RemoveAt(Index); //Remove it
+                listBox2.Items.Insert(Index + 1, Swap); //Add it back in one spot up
+                listBox2.SelectedItem = Swap; //Keep this item selected
 
             }
         }
+
         private void button17_Click(object sender, EventArgs e)
         {
             if (listBox2.SelectedItem != null)
@@ -365,32 +395,32 @@ namespace PowerUP
                 yValues.Clear();
                 yValues = database.GetGraphPoints(label14.Text, database.GetIterationID(label9.Text));
 
-                chart2.Series.Clear();
-                chart2.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+                chart3.Series.Clear();
+                chart3.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
 
-                chart2.ChartAreas[0].AxisX.IsMarginVisible = false;
+                chart3.ChartAreas[0].AxisX.IsMarginVisible = false;
                 i = 0;
-                chart2.ChartAreas[0].AxisY.Maximum = 10;
-                chart2.ChartAreas[0].AxisY.Minimum = 0;
+                chart3.ChartAreas[0].AxisY.Maximum = 10;
+                chart3.ChartAreas[0].AxisY.Minimum = 0;
                 foreach (var item in yValues)
                 {
-                    chart2.Series[0].Points.Add(new DataPoint(i, item));
+                    chart3.Series[0].Points.Add(new DataPoint(i, item));
                     i++;
                 }
 
                 yValues.Clear();
                 yValues = database.GetGraphPoints(label13.Text, database.GetIterationID(label9.Text));
 
-                chart2.Series.Clear();
-                chart2.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+                chart4.Series.Clear();
+                chart4.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
 
-                chart2.ChartAreas[0].AxisX.IsMarginVisible = false;
+                chart4.ChartAreas[0].AxisX.IsMarginVisible = false;
                 i = 0;
-                chart2.ChartAreas[0].AxisY.Maximum = 10;
-                chart2.ChartAreas[0].AxisY.Minimum = 0;
+                chart4.ChartAreas[0].AxisY.Maximum = 10;
+                chart4.ChartAreas[0].AxisY.Minimum = 0;
                 foreach (var item in yValues)
                 {
-                    chart2.Series[0].Points.Add(new DataPoint(i, item));
+                    chart4.Series[0].Points.Add(new DataPoint(i, item));
                     i++;
                 }
             }
@@ -410,8 +440,8 @@ namespace PowerUP
                 else if (checkBox1.Checked == false)
                 {
                     total =
-            1 + ((endTime - startTime).TotalDays * 5 -
-            (startTime.DayOfWeek - endTime.DayOfWeek) * 2) / 7;
+                        1 + ((endTime - startTime).TotalDays * 5 -
+                             (startTime.DayOfWeek - endTime.DayOfWeek) * 2) / 7;
 
                     if ((int)endTime.DayOfWeek == 6) total--;
                     if ((int)startTime.DayOfWeek == 0) total--;
@@ -423,7 +453,8 @@ namespace PowerUP
                 string endDate = dateTimePicker3.Value.ToShortDateString();
                 string iterationName = textBox3.Text;
                 listBox2.Items.Add(listBox1.SelectedItem + " : " + iterationName + " : " + startDate + " : " + endDate);
-                database.CreateIteration(database.projects[0].ID1, iterationName, listBox1.SelectedItem.ToString(), (int)total, startDate, endDate);
+                database.CreateIteration(database.projects[0].ID1, iterationName, listBox1.SelectedItem.ToString(),
+                    (int)total, startDate, endDate);
             }
         }
 
@@ -466,6 +497,7 @@ namespace PowerUP
 
 
         }
+
         private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
         {
             endTime = dateTimePicker3.Value.Date;
@@ -476,7 +508,9 @@ namespace PowerUP
 
 
         }
+
         #endregion
+
         #region iterationEditer
 
         private void button18_Click(object sender, EventArgs e)
@@ -487,7 +521,8 @@ namespace PowerUP
             database.LoadIterations(database.projects[0].ID1);
             foreach (var iteration in database.projects[0].iterations)
             {
-                listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " + iteration.Slutdato);
+                listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " +
+                                   iteration.Slutdato);
             }
         }
 
@@ -528,18 +563,28 @@ namespace PowerUP
 
         }
 
-        int maxinout = 0;
+
+
         private void button21_Click(object sender, EventArgs e)
         {
+            yValues.Clear();
+            yValues = database.GetGraphPoints(label12.Text, database.GetIterationID(label9.Text));
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count;
+            }
+            else
+            {
+                maxinout = 0;
+            }
 
-            if (textBox4.Text != "" && maxinout <= totalSelected)
+            if (textBox4.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected+1)
             {
                 string derp = textBox4.Text;
                 database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label12.Text, maxinout);
                 maxinout++;
                 yValues.Clear();
                 yValues = database.GetGraphPoints(label12.Text, database.GetIterationID(label9.Text));
-
                 chart2.Series.Clear();
                 chart2.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
 
@@ -553,6 +598,29 @@ namespace PowerUP
                     i++;
                 }
             }
+            if (yValues.Count == totalSelected+1)
+            {
+                chart2.Series.Clear();
+                chart2.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+                if (yValues.Count != null)
+                {
+                    maxinout = yValues.Count - 1;
+                }
+                else
+                {
+                    maxinout = 0;
+                }
+                chart2.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart2.ChartAreas[0].AxisY.Maximum = 10;
+                chart2.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart2.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+
 
         }
 
@@ -569,24 +637,56 @@ namespace PowerUP
 
         private void button22_Click(object sender, EventArgs e)
         {
-            if (textBox5.Text != "" && maxinout <= totalSelected)
+            yValues.Clear();
+            yValues = database.GetGraphPoints(label14.Text, database.GetIterationID(label9.Text));
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+
+            if (textBox5.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected+1)
             {
                 string derp = textBox5.Text;
                 database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label14.Text, maxinout);
                 maxinout++;
                 yValues.Clear();
                 yValues = database.GetGraphPoints(label14.Text, database.GetIterationID(label9.Text));
-
-                chart2.Series.Clear();
-                chart2.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
-
-                chart2.ChartAreas[0].AxisX.IsMarginVisible = false;
+                chart3.Series.Clear();
+                chart3.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red)});
+                chart3.ChartAreas[0].AxisX.IsMarginVisible = false;
                 int i = 0;
-                chart2.ChartAreas[0].AxisY.Maximum = 10;
-                chart2.ChartAreas[0].AxisY.Minimum = 0;
+                chart3.ChartAreas[0].AxisY.Maximum = 10;
+                chart3.ChartAreas[0].AxisY.Minimum = 0;
+
                 foreach (var item in yValues)
                 {
-                    chart2.Series[0].Points.Add(new DataPoint(i, item));
+                    chart3.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+            if (yValues.Count == totalSelected + 1)
+            {
+                chart3.Series.Clear();
+                chart3.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red)});
+                if (yValues.Count != null)
+                {
+                    maxinout = yValues.Count - 1;
+                }
+                else
+                {
+                    maxinout = 0;
+                }
+                chart3.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart3.ChartAreas[0].AxisY.Maximum = 10;
+                chart3.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart3.Series[0].Points.Add(new DataPoint(i, item));
                     i++;
                 }
             }
@@ -599,24 +699,56 @@ namespace PowerUP
 
         private void button23_Click(object sender, EventArgs e)
         {
-            if (textBox6.Text != "" && maxinout <= totalSelected)
+            yValues.Clear();
+            yValues = database.GetGraphPoints(label13.Text, database.GetIterationID(label9.Text));
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+
+            if (textBox6.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected+1)
             {
                 string derp = textBox6.Text;
                 database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label13.Text, maxinout);
                 maxinout++;
                 yValues.Clear();
                 yValues = database.GetGraphPoints(label13.Text, database.GetIterationID(label9.Text));
+                chart4.Series.Clear();
+                chart4.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red)});
 
-                chart2.Series.Clear();
-                chart2.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
-
-                chart2.ChartAreas[0].AxisX.IsMarginVisible = false;
+                chart4.ChartAreas[0].AxisX.IsMarginVisible = false;
                 int i = 0;
-                chart2.ChartAreas[0].AxisY.Maximum = 10;
-                chart2.ChartAreas[0].AxisY.Minimum = 0;
+                chart4.ChartAreas[0].AxisY.Maximum = 10;
+                chart4.ChartAreas[0].AxisY.Minimum = 0;
                 foreach (var item in yValues)
                 {
-                    chart2.Series[0].Points.Add(new DataPoint(i, item));
+                    chart4.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+            if (yValues.Count == totalSelected + 1)
+            {
+                chart4.Series.Clear();
+                chart4.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red)});
+                if (yValues.Count != null)
+                {
+                    maxinout = yValues.Count - 1;
+                }
+                else
+                {
+                    maxinout = 0;
+                }
+                chart4.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart4.ChartAreas[0].AxisY.Maximum = 10;
+                chart4.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart4.Series[0].Points.Add(new DataPoint(i, item));
                     i++;
                 }
             }
