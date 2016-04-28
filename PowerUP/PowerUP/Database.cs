@@ -21,15 +21,21 @@ namespace PowerUP
            // CreateTable();
         }
 
-        public void Connection()
+        public bool Connection()
         {
             string curFile = @"PointsDatabase.db";
             if (!File.Exists(curFile))
             {
+
                 SQLiteConnection.CreateFile("PointsDatabase.db");
+                
+                conn.Open();
+                return false;
             }
 
             conn.Open();
+
+            return true;
 
         }
 
