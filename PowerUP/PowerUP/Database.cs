@@ -17,7 +17,6 @@ namespace PowerUP
         public Database()
         {
             projects = new List<Project>();
-            Connection();
         }
 
         public bool Connection()
@@ -78,8 +77,6 @@ namespace PowerUP
 
         public void LoadProjects()
         {
-
-
             String sql = "select id, name, description from projektfil;";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             SQLiteDataReader reader = command.ExecuteReader();
@@ -93,22 +90,22 @@ namespace PowerUP
 
         }
 
-        public void Loadprojectfile(int projectID)
+        public void Loadprojectfile(string name)
         {
-            Project localProject = new Project(projectID, "null", "null");
-            String sql = "select id, name, description, startdato, slutdato from projektfil where id = " + projectID + ";";
+            Project localProject = new Project(0, name, "null");
+            String sql = "select id, name, description, startdato, slutdato from projektfil where name = '" + name + "';";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 int ID = Convert.ToInt32(reader["id"]);
-                string name = (string)(reader["name"]);
+                name = (string)(reader["name"]);
                 string description = (string)reader["description"];
                 string startdato = (string)reader["startdato"];
                 string slutdato = (string)reader["slutdato"];
                 foreach (Project project in projects)
                 {
-                    if (project.ID1 == ID)
+                    if (project.Name == name)
                     {
                         projects.ToList().Clear();
                         localProject = new Project(ID, name, description, startdato, slutdato);
@@ -116,48 +113,53 @@ namespace PowerUP
                     }
                 }
             }
-            sql = "select id, name, projektfil, type, duration, startdato, slutdato from iteration where projektfil = " + projectID + ";";
-            command = new SQLiteCommand(sql, conn);
-            reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                int ID = Convert.ToInt32(reader["id"]);
-                string name = (string)(reader["name"]);
-                int projektfil = (int)(reader["projektfil"]);
-                string type = (string)(reader["type"]);
-                int duration = (int)(reader["duration"]);
-                string startdato = (string)(reader["startdatp"]);
-                string slutdato = (string)(reader["slutdato"]);
-                localProject.iterations.Add(new Iteration(ID, name, projektfil, type, duration, startdato, slutdato));
-            }
-            foreach (Iteration iteration in localProject.iterations)
-            {
-                sql = "select id, name, iteration from graf where iteration = " + iteration.ID + ";";
-                command = new SQLiteCommand(sql, conn);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    int ID = Convert.ToInt32(reader["id"]);
-                    string name = (string)(reader["name"]);
-                    int iterationID = (int)(reader["iteration"]);
-                    Graph localGraph = new Graph(ID, name, iterationID);
-                    iteration.graphs.Add(localGraph);
-                }
-                foreach (Graph graph in iteration.graphs)
-                {
-                    sql = "select graphID, xValue, yValue from point where graphID = " + graph.ID + ";";
-                    command = new SQLiteCommand(sql, conn);
-                    reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        int graphID = Convert.ToInt32(reader["graphID"]);
-                        int xValue = (int)(reader["xValue"]);
-                        int yValue = (int)(reader["yValue"]);
-                        graph.MaxXValue++;
-                        graph.pointCollection.Add(new graphPoint(xValue,yValue, graphID));
-                    }
-                }
-            }
+            //sql = "select id, name, projektfil, type, duration, startdato, slutdato from iteration where projektfil = " + projectID + ";";
+            //command = new SQLiteCommand(sql, conn);
+            //reader = command.ExecuteReader();
+            //while (reader.Read())
+            //{
+            //    int ID = Convert.ToInt32(reader["id"]);
+            //    string name = (string)(reader["name"]);
+            //    int projektfil = (int)(reader["projektfil"]);
+            //    string type = (string)(reader["type"]);
+            //    int duration = (int)(reader["duration"]);
+            //    string startdato = (string)(reader["startdatp"]);
+            //    string slutdato = (string)(reader["slutdato"]);
+            //    localProject.iterations.Add(new Iteration(ID, name, projektfil, type, duration, startdato, slutdato));
+            //}
+            //foreach (Iteration iteration in localProject.iterations)
+            //{
+            //    sql = "select id, name, iteration from graf where iteration = " + iteration.ID + ";";
+            //    command = new SQLiteCommand(sql, conn);
+            //    reader = command.ExecuteReader();
+            //    while (reader.Read())
+            //    {
+            //        int ID = Convert.ToInt32(reader["id"]);
+            //        string name = (string)(reader["name"]);
+            //        int iterationID = (int)(reader["iteration"]);
+            //        Graph localGraph = new Graph(ID, name, iterationID);
+            //        iteration.graphs.Add(localGraph);
+            //    }
+            //    foreach (Graph graph in iteration.graphs)
+            //    {
+            //        sql = "select graphID, xValue, yValue from point where graphID = " + graph.ID + ";";
+            //        command = new SQLiteCommand(sql, conn);
+            //        reader = command.ExecuteReader();
+            //        while (reader.Read())
+            //        {
+            //            int graphID = Convert.ToInt32(reader["graphID"]);
+            //            int xValue = (int)(reader["xValue"]);
+            //            int yValue = (int)(reader["yValue"]);
+            //            graph.MaxXValue++;
+            //            graph.pointCollection.Add(new graphPoint(xValue,yValue, graphID));
+            //        }
+            //    }
+            //}
+            
+        }
+
+        public void LoadIterations(int projectID)
+        {
             
         }
 

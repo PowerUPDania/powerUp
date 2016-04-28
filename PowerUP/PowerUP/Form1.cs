@@ -74,15 +74,14 @@ namespace PowerUP
                 if (count - 1 >= i)
                 {
                     lbl.Text = database.projects[i].Name;
-                    foreach (Project project in database.projects)
-                    {
-                        if (lbl.Text == project.Name)
-                        {
-                            int id = project.ID1;
-                            database.Loadprojectfile(id);
-                        }
-                    }
-                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; label4.Text = lbl.Text; };
+                    //foreach (Project project in database.projects)
+                    //{
+                    //        database.Loadprojectfile(project.Name);
+                    //}
+                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5;
+                                              label4.Text = lbl.Text; database.Loadprojectfile(label4.Text);
+                                              label30.Text = database.projects[0].Description;
+                    };
                 }
                 else
                 {
@@ -502,6 +501,11 @@ namespace PowerUP
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label30_Click(object sender, EventArgs e)
         {
 
         }

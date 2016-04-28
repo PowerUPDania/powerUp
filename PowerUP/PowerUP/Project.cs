@@ -42,6 +42,12 @@ namespace PowerUP
             }
         }
 
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+
         public Project(int iD, string name, string description)
         {
             this.description = description;
