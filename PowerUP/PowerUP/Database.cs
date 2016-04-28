@@ -18,7 +18,6 @@ namespace PowerUP
         {
             projects = new List<Project>();
             Connection();
-           // CreateTable();
         }
 
         public void Connection()
