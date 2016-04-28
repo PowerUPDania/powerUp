@@ -27,7 +27,11 @@ namespace PowerUP
             pagecontrol.Appearance = TabAppearance.FlatButtons; pagecontrol.ItemSize = new Size(0, 1); pagecontrol.SizeMode = TabSizeMode.Fixed;
             tabControl1.Appearance = TabAppearance.FlatButtons; tabControl1.ItemSize = new Size(0, 1); tabControl1.SizeMode = TabSizeMode.Fixed;
             database = new Database();
-            //  database.Connection();
+            if (database.Connection() != true)
+            {
+                database.CreateTable();
+               
+            }
         }
         #region Startside
 
@@ -199,6 +203,7 @@ namespace PowerUP
                 {
                     lbl.Text = database.projects[i].Name;
                     //  var derp= database.projects[i].ID1;
+                   
                     lbl.Click += delegate { pagecontrol.SelectedTab = tabPage5; label4.Text = lbl.Text; };
                 }
                 else
