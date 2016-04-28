@@ -53,6 +53,30 @@ namespace PowerUP
             set { internIndex = value; }
         }
 
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public string Type1
+        {
+            get { return type; }
+            set { type = value; }
+        }
+
+        public string Startdato
+        {
+            get { return startdato; }
+            set { startdato = value; }
+        }
+
+        public string Slutdato
+        {
+            get { return slutdato; }
+            set { slutdato = value; }
+        }
+
         public Iteration(int iD, string name, int projektfil, string type, int duration, string startdato, string slutdato, int internIndex)
         {
             this.ID = iD;

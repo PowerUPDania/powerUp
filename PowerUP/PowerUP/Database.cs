@@ -156,14 +156,21 @@ namespace PowerUP
             {
                 int ID = Convert.ToInt32(reader["id"]);
                 string name = (string)(reader["name"]);
-                int projektfil = (int)(reader["projektfil"]);
+                int projektfil = Convert.ToInt32(reader["projektfil"]);
                 string type = (string)(reader["type"]);
-                int duration = (int)(reader["duration"]);
-                string startdato = (string)(reader["startdatp"]);
+                int duration = Convert.ToInt32(reader["duration"]);
+                string startdato = (string)(reader["startdato"]);
                 string slutdato = (string)(reader["slutdato"]);
-                int internIndex = (int) (reader["internIndex"]);
-                localProject.iterations.Add(new Iteration(ID, name, projektfil, type, duration, startdato, slutdato, internIndex));
+                int internIndex = Convert.ToInt32(reader["internIndex"]);
+                projects[0].iterations.Add(new Iteration(ID, name, projektfil, type, duration, startdato, slutdato, internIndex));
             }
+        }
+
+        public void UpdateIteration(int internIndex, string name)
+        {
+            String sql = "update iteration set internIndex = " + internIndex + " where name = '" + name + "' ;";
+            SQLiteCommand command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
         }
 
         public void CreateProject(string name, string description, string startdato, string slutdato)
@@ -220,7 +227,7 @@ namespace PowerUP
         public void CreateIteration(int projectID, string name, string type, int duration, string startdato, string slutdato)
         {
             //Iteration localIteration = new Iteration(1, "null", 1, "null", 1, "null", "null");
-            String sql = "insert into iteration values(null,'" + name + "'," + projectID + ",'" + type + "'," + duration + ",'" + startdato + "','" + slutdato + "', null)";
+            String sql = "insert into iteration values(null,'" + name + "'," + projectID + ",'" + type + "'," + duration + ",'" + startdato + "','" + slutdato + "', 0)";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             command.ExecuteNonQuery();
 
@@ -308,7 +315,7 @@ namespace PowerUP
                             SQLiteCommand command = new SQLiteCommand(sql, conn);
                             command.ExecuteNonQuery();
 
-                            sql = "delete from iteration where id = " + iterationID + "and projektfil = " + projectID + ";";
+                            sql = "delete from iteration where id = " + iterationID + " and projektfil = " + projectID + ";";
                             command = new SQLiteCommand(sql, conn);
                             command.ExecuteNonQuery();
                             project.iterations.ToList().Remove(iteration);

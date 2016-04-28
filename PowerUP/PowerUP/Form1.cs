@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -171,6 +172,10 @@ namespace PowerUP
             database.CreateProject(projectName, projectDescription, startDate, endDate);
             label4.Text = textBox1.Text;
             label31.Text = projectName;
+            listBox2.Items.Clear();
+            database.projects[0].iterations.Clear();
+            database.LoadIterations(database.projects[0].ID1);
+            listBox2.Items.Add(database.projects[0].iterations.ToString());
         }
         #endregion
         #region projectView
@@ -230,6 +235,13 @@ namespace PowerUP
         private void button8_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage6;
+            listBox2.Items.Clear();
+            database.projects[0].iterations.Clear();
+            database.LoadIterations(database.projects[0].ID1);
+            foreach (var iteration in database.projects[0].iterations)
+            {
+                listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " + iteration.Slutdato);
+            }
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -248,6 +260,32 @@ namespace PowerUP
         private void button14_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage5;
+            int internIndex = 1;
+            foreach (string iteration in listBox2.Items)
+            {
+                string removedStuff = iteration.Substring(0, iteration.Length - 26);
+                if (iteration.Contains("Inception"))
+                {
+                    removedStuff = removedStuff.Substring(12);
+                }
+                if (iteration.Contains("Elaboration"))
+                {
+                    removedStuff = removedStuff.Substring(14);
+                }
+                if (iteration.Contains("Construction"))
+                {
+                    removedStuff = removedStuff.Substring(15);
+                }
+                if (iteration.Contains("Transition"))
+                {
+                    removedStuff = removedStuff.Substring(13);
+                }
+                label9.Text = removedStuff;
+                database.UpdateIteration(internIndex, removedStuff);
+                internIndex++;
+
+            }
+
         }
 
 
@@ -337,6 +375,33 @@ namespace PowerUP
         private void button13_Click(object sender, EventArgs e)
         {
             int Index = listBox2.SelectedIndex;
+            int tempID = 0;
+            string data = listBox2.SelectedItem.ToString();
+            string removedStuff = data.Substring(0, data.Length - 26);
+            if (data.Contains("Inception"))
+            {
+                removedStuff = removedStuff.Substring(12);
+            }
+            if (data.Contains("Elaboration"))
+            {
+                removedStuff = removedStuff.Substring(14);
+            }
+            if (data.Contains("Construction"))
+            {
+                removedStuff = removedStuff.Substring(15);
+            }
+            if (data.Contains("Transition"))
+            {
+                removedStuff = removedStuff.Substring(13);
+            }
+            foreach (Iteration iteration in database.projects[0].iterations)
+            {
+                if (removedStuff == iteration.Name)
+                {
+                    tempID = iteration.ID;
+                }
+            }
+            database.DeleteIteration(database.projects[0].ID1, tempID);
             listBox2.Items.RemoveAt(Index);
         }
 
@@ -362,6 +427,10 @@ namespace PowerUP
         private void button18_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage6;
+            listBox2.Items.Clear();
+            database.projects[0].iterations.Clear();
+            database.LoadIterations(database.projects[0].ID1);
+            listBox2.Items.Add(database.projects[0].iterations.ToString());
         }
 
         #endregion
