@@ -171,11 +171,14 @@ namespace PowerUP
             string endDate = dateTimePicker4.Value.ToShortDateString();
             database.CreateProject(projectName, projectDescription, startDate, endDate);
             label4.Text = textBox1.Text;
-            label31.Text = projectName;
+            label31.Text = label4.Text;
             listBox2.Items.Clear();
             database.projects[0].iterations.Clear();
             database.LoadIterations(database.projects[0].ID1);
-            listBox2.Items.Add(database.projects[0].iterations.ToString());
+            foreach (var iteration in database.projects[0].iterations)
+            {
+                listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " + iteration.Slutdato);
+            }
         }
         #endregion
         #region projectView
@@ -235,6 +238,7 @@ namespace PowerUP
         private void button8_Click(object sender, EventArgs e)
         {
             pagecontrol.SelectedTab = tabPage6;
+            label31.Text = label4.Text;
             listBox2.Items.Clear();
             database.projects[0].iterations.Clear();
             database.LoadIterations(database.projects[0].ID1);
@@ -317,28 +321,30 @@ namespace PowerUP
         }
         private void button17_Click(object sender, EventArgs e)
         {
-
-            pagecontrol.SelectedTab = tabPage7;
-            string data = listBox2.SelectedItem.ToString();
-            string removedStuff = data.Substring(0, data.Length - 26);
-            if (data.Contains("Inception"))
+            if (listBox2.SelectedItem != null)
             {
-                removedStuff = removedStuff.Substring(12);
+                pagecontrol.SelectedTab = tabPage7;
+                string data = listBox2.SelectedItem.ToString();
+                string removedStuff = data.Substring(0, data.Length - 26);
+                if (data.Contains("Inception"))
+                {
+                    removedStuff = removedStuff.Substring(12);
+                }
+                if (data.Contains("Elaboration"))
+                {
+                    removedStuff = removedStuff.Substring(14);
+                }
+                if (data.Contains("Construction"))
+                {
+                    removedStuff = removedStuff.Substring(15);
+                }
+                if (data.Contains("Transition"))
+                {
+                    removedStuff = removedStuff.Substring(13);
+                }
+                label9.Text = removedStuff;
+                totalSecleted = Convert.ToInt32(listBox2.SelectedIndex.Equals(total));
             }
-            if (data.Contains("Elaboration"))
-            {
-                removedStuff = removedStuff.Substring(14);
-            }
-            if (data.Contains("Construction"))
-            {
-                removedStuff = removedStuff.Substring(15);
-            }
-            if (data.Contains("Transition"))
-            {
-                removedStuff = removedStuff.Substring(13);
-            }
-            label9.Text = removedStuff;
-            totalSecleted = Convert.ToInt32(listBox2.SelectedIndex.Equals(total));
 
         }
 
@@ -430,7 +436,10 @@ namespace PowerUP
             listBox2.Items.Clear();
             database.projects[0].iterations.Clear();
             database.LoadIterations(database.projects[0].ID1);
-            listBox2.Items.Add(database.projects[0].iterations.ToString());
+            foreach (var iteration in database.projects[0].iterations)
+            {
+                listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " + iteration.Slutdato);
+            }
         }
 
         #endregion
@@ -580,12 +589,12 @@ namespace PowerUP
 
         }
 
-        private void label30_Click(object sender, EventArgs e)
+        private void label31_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label31_Click(object sender, EventArgs e)
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

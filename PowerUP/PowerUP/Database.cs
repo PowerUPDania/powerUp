@@ -63,19 +63,19 @@ namespace PowerUP
             command = new SQLiteCommand(sql, conn);
             command.ExecuteNonQuery();
 
-            sql = "create table graf (id integer primary key, name string, iteration integer, foreign key (iteration) references iteration(id));";
+            sql = "create table graf (id integer primary key, name string, xValue integer, yValue integer, iteration integer, foreign key (iteration) references iteration(id));";
             command = new SQLiteCommand(sql, conn);
             command.ExecuteNonQuery();
 
-            sql = "create table Point (graphID integer, foreign key (graphID) references graf(id));";
-            command = new SQLiteCommand(sql, conn);
-            command.ExecuteNonQuery();
-            sql = "alter table point add xValue integer;";
-            command = new SQLiteCommand(sql, conn);
-            command.ExecuteNonQuery();
-            sql = "alter table point add yValue integer;";
-            command = new SQLiteCommand(sql, conn);
-            command.ExecuteNonQuery();
+            //sql = "create table Point (graphID integer, foreign key (graphID) references graf(id));";
+            //command = new SQLiteCommand(sql, conn);
+            //command.ExecuteNonQuery();
+            //sql = "alter table point add xValue integer;";
+            //command = new SQLiteCommand(sql, conn);
+            //command.ExecuteNonQuery();
+            //sql = "alter table point add yValue integer;";
+            //command = new SQLiteCommand(sql, conn);
+            //command.ExecuteNonQuery();
         }
 
         public void LoadProjects()

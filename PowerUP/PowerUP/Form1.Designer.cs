@@ -572,6 +572,7 @@
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "Project  Name";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // tabPage6
             // 
