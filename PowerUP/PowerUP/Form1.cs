@@ -234,12 +234,12 @@ namespace PowerUP
                 if (count - 1 >= i)
                 {
                     lbl.Text = database.projects[i].Name;
-                    //  var derp= database.projects[i].ID1;
 
                     lbl.Click += delegate
                     {
                         pagecontrol.SelectedTab = tabPage5;
                         label4.Text = lbl.Text;
+                        //Insert project graph update here
                     };
                 }
                 else
@@ -327,8 +327,28 @@ namespace PowerUP
                 label9.Text = removedStuff;
                 database.UpdateIteration(internIndex, removedStuff);
                 internIndex++;
-
             }
+            //Insert project graph update here
+
+            yValues.Clear();
+            foreach (int index in database.OrderIterations(database.projects[0].ID1))
+            {
+                yValues.AddRange(database.GetGraphPoints(label12.Text, index));
+            }
+
+            chart1.Series.Clear();
+            chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+
+            chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+            int i = 0;
+            chart1.ChartAreas[0].AxisY.Maximum = 10;
+            chart1.ChartAreas[0].AxisY.Minimum = 0;
+            foreach (var item in yValues)
+            {
+                chart1.Series[0].Points.Add(new DataPoint(i, item));
+                i++;
+            }
+
 
         }
 

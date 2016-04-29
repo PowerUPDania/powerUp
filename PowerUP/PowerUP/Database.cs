@@ -281,5 +281,19 @@ namespace PowerUP
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             command.ExecuteNonQuery();
         }
+
+        public List<int> OrderIterations(int projectID)
+        {
+            List<int> iterationList = new List<int>();
+            String sql = "Select id from iteration where projektfil = " + projectID + " order by internIndex asc ;";
+            SQLiteCommand command = new SQLiteCommand(sql, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["id"]);
+                iterationList.Add(id);
+            }
+            return iterationList;
+        } 
     }
 }
