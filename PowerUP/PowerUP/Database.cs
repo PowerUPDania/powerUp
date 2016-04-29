@@ -254,7 +254,7 @@ namespace PowerUP
         public List<int> GetGraphPoints(string graphType, int iterationID)
         {
             List<int> datalist = new List<int>();
-            String sql = "select yValue from Graf where name = '" + graphType + "' and iteration = "+ iterationID + ";";
+            String sql = "select yValue from Graf where name = '" + graphType + "' and iteration = " + iterationID + ";";
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -284,6 +284,44 @@ namespace PowerUP
                 iterationList.Add(id);
             }
             return iterationList;
-        } 
+        }
+
+        public bool NameCheckSucces(string name, bool projekt,int projektId)
+        {
+            if (projekt == true)
+            {
+                String sql = "Select  name from projektfil where name = '" + name + "';";
+                SQLiteCommand command = new SQLiteCommand(sql, conn);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string dataName = (string)reader["name"];
+                    if (dataName ==name)
+                    {
+                        return false;
+                    }
+                }
+
+
+            }
+            if (projekt == false)
+            {
+                String sql = "Select  name from iteration where name = '" + name + "' and projektfil="+ projektId + ";";
+                SQLiteCommand command = new SQLiteCommand(sql, conn);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string dataName = (string)reader["name"];
+                    if (dataName ==name)
+                    {
+                        return false;
+                    }
+                }
+
+
+            }
+            return true;
+        }
     }
 }
+
