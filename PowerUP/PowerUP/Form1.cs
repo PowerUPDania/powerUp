@@ -272,7 +272,188 @@ namespace PowerUP
                 else
                 {
                     lbl.Text = "Create New Project";
-                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage4; };
+                    lbl.Click += delegate
+                    {
+                        pagecontrol.SelectedTab = tabPage4;
+                        database.Loadprojectfile(label4.Text);
+                        database.LoadIterations(database.projects[0].ID1);
+                        //Insert project graph update here
+
+
+                        //tabpage11
+                        yValues.Clear();
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label12.Text, index));
+                        }
+
+                        chart1.Series.Clear();
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+                        chart1.Series[0].Name = label12.Text;
+
+                        chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[0].AxisY.Maximum = 10;
+                        chart1.ChartAreas[0].AxisY.Minimum = 0;
+
+                        int temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[0].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart1.ChartAreas[1].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[1].AxisY.Maximum = 10;
+                        chart1.ChartAreas[1].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label14.Text, index));
+                        }
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink) });
+                        chart1.Series[1].ChartArea = "ChartArea2";
+                        chart1.Series[1].Name = label14.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[1].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart1.ChartAreas[2].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[2].AxisY.Maximum = 10;
+                        chart1.ChartAreas[2].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label13.Text, index));
+                        }
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange) });
+                        chart1.Series[2].ChartArea = "ChartArea3";
+                        chart1.Series[2].Name = label13.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[2].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        //tabpage14
+                        yValues.Clear();
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label18.Text, index));
+                        }
+
+                        chart11.Series.Clear();
+                        chart11.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Yellow) });
+                        chart11.Series[0].Name = label18.Text;
+
+                        chart11.ChartAreas[0].AxisX.IsMarginVisible = false;
+                        chart11.ChartAreas[0].AxisY.Maximum = 10;
+                        chart11.ChartAreas[0].AxisY.Minimum = 0;
+
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart11.Series[0].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart11.ChartAreas[1].AxisX.IsMarginVisible = false;
+                        chart11.ChartAreas[1].AxisY.Maximum = 10;
+                        chart11.ChartAreas[1].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label21.Text, index));
+                        }
+                        chart11.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.LightGreen) });
+                        chart11.Series[1].ChartArea = "ChartArea2";
+                        chart11.Series[1].Name = label21.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart11.Series[1].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart11.ChartAreas[2].AxisX.IsMarginVisible = false;
+                        chart11.ChartAreas[2].AxisY.Maximum = 10;
+                        chart11.ChartAreas[2].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label23.Text, index));
+                        }
+                        chart11.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Green) });
+                        chart11.Series[2].ChartArea = "ChartArea3";
+                        chart11.Series[2].Name = label23.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart11.Series[2].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        //tabpage15
+                        yValues.Clear();
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label29.Text, index));
+                        }
+
+                        chart12.Series.Clear();
+                        chart12.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.DarkSlateGray) });
+                        chart12.Series[0].Name = label29.Text;
+
+                        chart12.ChartAreas[0].AxisX.IsMarginVisible = false;
+                        chart12.ChartAreas[0].AxisY.Maximum = 10;
+                        chart12.ChartAreas[0].AxisY.Minimum = 0;
+
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart12.Series[0].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart12.ChartAreas[1].AxisX.IsMarginVisible = false;
+                        chart12.ChartAreas[1].AxisY.Maximum = 10;
+                        chart12.ChartAreas[1].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label28.Text, index));
+                        }
+                        chart12.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.MediumPurple) });
+                        chart12.Series[1].ChartArea = "ChartArea2";
+                        chart12.Series[1].Name = label28.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart12.Series[1].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart12.ChartAreas[2].AxisX.IsMarginVisible = false;
+                        chart12.ChartAreas[2].AxisY.Maximum = 10;
+                        chart12.ChartAreas[2].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label27.Text, index));
+                        }
+                        chart12.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Purple) });
+                        chart12.Series[2].ChartArea = "ChartArea3";
+                        chart12.Series[2].Name = label27.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart12.Series[2].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+                    };
                 }
                 lbl.BackColor = Color.LightGray;
                 lbl.Width = 300;
@@ -733,7 +914,188 @@ namespace PowerUP
                 else
                 {
                     lbl.Text = "Create New Project";
-                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage4; };
+                    lbl.Click += delegate
+                    {
+                        pagecontrol.SelectedTab = tabPage4;
+                        database.Loadprojectfile(label4.Text);
+                        database.LoadIterations(database.projects[0].ID1);
+                        //Insert project graph update here
+
+
+                        //tabpage11
+                        yValues.Clear();
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label12.Text, index));
+                        }
+
+                        chart1.Series.Clear();
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+                        chart1.Series[0].Name = label12.Text;
+
+                        chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[0].AxisY.Maximum = 10;
+                        chart1.ChartAreas[0].AxisY.Minimum = 0;
+
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[0].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart1.ChartAreas[1].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[1].AxisY.Maximum = 10;
+                        chart1.ChartAreas[1].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label14.Text, index));
+                        }
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink) });
+                        chart1.Series[1].ChartArea = "ChartArea2";
+                        chart1.Series[1].Name = label14.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[1].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart1.ChartAreas[2].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[2].AxisY.Maximum = 10;
+                        chart1.ChartAreas[2].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label13.Text, index));
+                        }
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange) });
+                        chart1.Series[2].ChartArea = "ChartArea3";
+                        chart1.Series[2].Name = label13.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[2].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        //tabpage14
+                        yValues.Clear();
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label18.Text, index));
+                        }
+
+                        chart11.Series.Clear();
+                        chart11.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Yellow) });
+                        chart11.Series[0].Name = label18.Text;
+
+                        chart11.ChartAreas[0].AxisX.IsMarginVisible = false;
+                        chart11.ChartAreas[0].AxisY.Maximum = 10;
+                        chart11.ChartAreas[0].AxisY.Minimum = 0;
+
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart11.Series[0].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart11.ChartAreas[1].AxisX.IsMarginVisible = false;
+                        chart11.ChartAreas[1].AxisY.Maximum = 10;
+                        chart11.ChartAreas[1].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label21.Text, index));
+                        }
+                        chart11.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.LightGreen) });
+                        chart11.Series[1].ChartArea = "ChartArea2";
+                        chart11.Series[1].Name = label21.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart11.Series[1].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart11.ChartAreas[2].AxisX.IsMarginVisible = false;
+                        chart11.ChartAreas[2].AxisY.Maximum = 10;
+                        chart11.ChartAreas[2].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label23.Text, index));
+                        }
+                        chart11.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Green) });
+                        chart11.Series[2].ChartArea = "ChartArea3";
+                        chart11.Series[2].Name = label23.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart11.Series[2].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        //tabpage15
+                        yValues.Clear();
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label29.Text, index));
+                        }
+
+                        chart12.Series.Clear();
+                        chart12.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.DarkSlateGray) });
+                        chart12.Series[0].Name = label29.Text;
+
+                        chart12.ChartAreas[0].AxisX.IsMarginVisible = false;
+                        chart12.ChartAreas[0].AxisY.Maximum = 10;
+                        chart12.ChartAreas[0].AxisY.Minimum = 0;
+
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart12.Series[0].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart12.ChartAreas[1].AxisX.IsMarginVisible = false;
+                        chart12.ChartAreas[1].AxisY.Maximum = 10;
+                        chart12.ChartAreas[1].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label28.Text, index));
+                        }
+                        chart12.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.MediumPurple) });
+                        chart12.Series[1].ChartArea = "ChartArea2";
+                        chart12.Series[1].Name = label28.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart12.Series[1].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart12.ChartAreas[2].AxisX.IsMarginVisible = false;
+                        chart12.ChartAreas[2].AxisY.Maximum = 10;
+                        chart12.ChartAreas[2].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label27.Text, index));
+                        }
+                        chart12.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Purple) });
+                        chart12.Series[2].ChartArea = "ChartArea3";
+                        chart12.Series[2].Name = label27.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart12.Series[2].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+                    };
                 }
                 lbl.BackColor = Color.LightGray;
                 lbl.Width = 300;
@@ -981,7 +1343,188 @@ namespace PowerUP
                 else
                 {
                     lbl.Text = "Create New Project";
-                    lbl.Click += delegate { pagecontrol.SelectedTab = tabPage4; };
+                    lbl.Click += delegate
+                    {
+                        pagecontrol.SelectedTab = tabPage4;
+                        database.Loadprojectfile(label4.Text);
+                        database.LoadIterations(database.projects[0].ID1);
+                        //Insert project graph update here
+
+
+                        //tabpage11
+                        yValues.Clear();
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label12.Text, index));
+                        }
+
+                        chart1.Series.Clear();
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+                        chart1.Series[0].Name = label12.Text;
+
+                        chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[0].AxisY.Maximum = 10;
+                        chart1.ChartAreas[0].AxisY.Minimum = 0;
+
+                        int temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[0].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart1.ChartAreas[1].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[1].AxisY.Maximum = 10;
+                        chart1.ChartAreas[1].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label14.Text, index));
+                        }
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink) });
+                        chart1.Series[1].ChartArea = "ChartArea2";
+                        chart1.Series[1].Name = label14.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[1].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart1.ChartAreas[2].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[2].AxisY.Maximum = 10;
+                        chart1.ChartAreas[2].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label13.Text, index));
+                        }
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange) });
+                        chart1.Series[2].ChartArea = "ChartArea3";
+                        chart1.Series[2].Name = label13.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[2].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        //tabpage14
+                        yValues.Clear();
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label18.Text, index));
+                        }
+
+                        chart11.Series.Clear();
+                        chart11.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Yellow) });
+                        chart11.Series[0].Name = label18.Text;
+
+                        chart11.ChartAreas[0].AxisX.IsMarginVisible = false;
+                        chart11.ChartAreas[0].AxisY.Maximum = 10;
+                        chart11.ChartAreas[0].AxisY.Minimum = 0;
+
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart11.Series[0].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart11.ChartAreas[1].AxisX.IsMarginVisible = false;
+                        chart11.ChartAreas[1].AxisY.Maximum = 10;
+                        chart11.ChartAreas[1].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label21.Text, index));
+                        }
+                        chart11.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.LightGreen) });
+                        chart11.Series[1].ChartArea = "ChartArea2";
+                        chart11.Series[1].Name = label21.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart11.Series[1].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart11.ChartAreas[2].AxisX.IsMarginVisible = false;
+                        chart11.ChartAreas[2].AxisY.Maximum = 10;
+                        chart11.ChartAreas[2].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label23.Text, index));
+                        }
+                        chart11.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Green) });
+                        chart11.Series[2].ChartArea = "ChartArea3";
+                        chart11.Series[2].Name = label23.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart11.Series[2].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        //tabpage15
+                        yValues.Clear();
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label29.Text, index));
+                        }
+
+                        chart12.Series.Clear();
+                        chart12.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.DarkSlateGray) });
+                        chart12.Series[0].Name = label29.Text;
+
+                        chart12.ChartAreas[0].AxisX.IsMarginVisible = false;
+                        chart12.ChartAreas[0].AxisY.Maximum = 10;
+                        chart12.ChartAreas[0].AxisY.Minimum = 0;
+
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart12.Series[0].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart12.ChartAreas[1].AxisX.IsMarginVisible = false;
+                        chart12.ChartAreas[1].AxisY.Maximum = 10;
+                        chart12.ChartAreas[1].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label28.Text, index));
+                        }
+                        chart12.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.MediumPurple) });
+                        chart12.Series[1].ChartArea = "ChartArea2";
+                        chart12.Series[1].Name = label28.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart12.Series[1].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart12.ChartAreas[2].AxisX.IsMarginVisible = false;
+                        chart12.ChartAreas[2].AxisY.Maximum = 10;
+                        chart12.ChartAreas[2].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label27.Text, index));
+                        }
+                        chart12.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Purple) });
+                        chart12.Series[2].ChartArea = "ChartArea3";
+                        chart12.Series[2].Name = label27.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart12.Series[2].Points.Add(new DataPoint(temp, item));
+                            temp++;
+                        }
+                    };
                 }
                 lbl.BackColor = Color.LightGray;
                 lbl.Width = 300;
