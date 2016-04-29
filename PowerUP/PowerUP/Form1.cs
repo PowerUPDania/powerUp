@@ -340,15 +340,30 @@ namespace PowerUP
             chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
 
             chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
-            int i = 0;
-            chart1.ChartAreas[0].AxisY.Maximum = 10;
+            //chart1.ChartAreas[0].AxisY.Maximum = 10;
             chart1.ChartAreas[0].AxisY.Minimum = 0;
+
+            int i = 0;
             foreach (var item in yValues)
             {
                 chart1.Series[0].Points.Add(new DataPoint(i, item));
                 i++;
             }
 
+            //yValues.Clear();
+            //foreach (int index in database.OrderIterations(database.projects[0].ID1))
+            //{
+            //    yValues.AddRange(database.GetGraphPoints(label14.Text, index));
+            //}
+
+            //chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink) });
+
+            //i = 0;
+            //foreach (var item in yValues)
+            //{
+            //    chart1.Series[1].Points.Add(new DataPoint(i, item + 11));
+            //    i++;
+            //}
 
         }
 
