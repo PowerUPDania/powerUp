@@ -402,7 +402,7 @@ namespace PowerUP
                 yValues = database.GetGraphPoints(label14.Text, database.GetIterationID(label9.Text));
 
                 chart3.Series.Clear();
-                chart3.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+                chart3.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink) });
 
                 chart3.ChartAreas[0].AxisX.IsMarginVisible = false;
                 i = 0;
@@ -418,7 +418,7 @@ namespace PowerUP
                 yValues = database.GetGraphPoints(label13.Text, database.GetIterationID(label9.Text));
 
                 chart4.Series.Clear();
-                chart4.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+                chart4.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange) });
 
                 chart4.ChartAreas[0].AxisX.IsMarginVisible = false;
                 i = 0;
@@ -427,6 +427,96 @@ namespace PowerUP
                 foreach (var item in yValues)
                 {
                     chart4.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label18.Text, database.GetIterationID(label9.Text));
+                chart5.Series.Clear();
+                chart5.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Yellow) });
+
+                chart5.ChartAreas[0].AxisX.IsMarginVisible = false;
+                i = 0;
+                chart5.ChartAreas[0].AxisY.Maximum = 10;
+                chart5.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart5.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label21.Text, database.GetIterationID(label9.Text));
+                chart6.Series.Clear();
+                chart6.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.LightGreen) });
+
+                chart6.ChartAreas[0].AxisX.IsMarginVisible = false;
+                i = 0;
+                chart6.ChartAreas[0].AxisY.Maximum = 10;
+                chart6.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart6.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label23.Text, database.GetIterationID(label9.Text));
+                chart7.Series.Clear();
+                chart7.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Green) });
+
+                chart7.ChartAreas[0].AxisX.IsMarginVisible = false;
+                i = 0;
+                chart7.ChartAreas[0].AxisY.Maximum = 10;
+                chart7.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart7.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label29.Text, database.GetIterationID(label9.Text));
+                chart10.Series.Clear();
+                chart10.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.DarkSlateGray) });
+
+                chart10.ChartAreas[0].AxisX.IsMarginVisible = false;
+                i = 0;
+                chart10.ChartAreas[0].AxisY.Maximum = 10;
+                chart10.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart10.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label28.Text, database.GetIterationID(label9.Text));
+                chart9.Series.Clear();
+                chart9.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.MediumPurple) });
+
+                chart9.ChartAreas[0].AxisX.IsMarginVisible = false;
+                i = 0;
+                chart9.ChartAreas[0].AxisY.Maximum = 10;
+                chart9.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart9.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label27.Text, database.GetIterationID(label9.Text));
+                chart8.Series.Clear();
+                chart8.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Purple) });
+
+                chart8.ChartAreas[0].AxisX.IsMarginVisible = false;
+                i = 0;
+                chart8.ChartAreas[0].AxisY.Maximum = 10;
+                chart8.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart8.Series[0].Points.Add(new DataPoint(i, item));
                     i++;
                 }
             }
@@ -633,7 +723,26 @@ namespace PowerUP
         private void button24_Click(object sender, EventArgs e)
         {
             yValues.Clear();
-
+            database.ClearGraph(label12.Text, database.GetIterationID(label9.Text));
+            chart2.Series.Clear();
+            chart2.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count - 1;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+            chart2.ChartAreas[0].AxisX.IsMarginVisible = false;
+            int i = 0;
+            chart2.ChartAreas[0].AxisY.Maximum = 10;
+            chart2.ChartAreas[0].AxisY.Minimum = 0;
+            foreach (var item in yValues)
+            {
+                chart2.Series[0].Points.Add(new DataPoint(i, item));
+                i++;
+            }
         }
 
         private void chart3_Click(object sender, EventArgs e)
@@ -662,7 +771,7 @@ namespace PowerUP
                 yValues.Clear();
                 yValues = database.GetGraphPoints(label14.Text, database.GetIterationID(label9.Text));
                 chart3.Series.Clear();
-                chart3.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red)});
+                chart3.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink)});
                 chart3.ChartAreas[0].AxisX.IsMarginVisible = false;
                 int i = 0;
                 chart3.ChartAreas[0].AxisY.Maximum = 10;
@@ -677,7 +786,7 @@ namespace PowerUP
             if (yValues.Count == totalSelected + 1)
             {
                 chart3.Series.Clear();
-                chart3.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red)});
+                chart3.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink)});
                 if (yValues.Count != null)
                 {
                     maxinout = yValues.Count - 1;
@@ -724,7 +833,7 @@ namespace PowerUP
                 yValues.Clear();
                 yValues = database.GetGraphPoints(label13.Text, database.GetIterationID(label9.Text));
                 chart4.Series.Clear();
-                chart4.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red)});
+                chart4.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange)});
 
                 chart4.ChartAreas[0].AxisX.IsMarginVisible = false;
                 int i = 0;
@@ -739,7 +848,7 @@ namespace PowerUP
             if (yValues.Count == totalSelected + 1)
             {
                 chart4.Series.Clear();
-                chart4.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red)});
+                chart4.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange)});
                 if (yValues.Count != null)
                 {
                     maxinout = yValues.Count - 1;
@@ -783,6 +892,548 @@ namespace PowerUP
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            yValues = database.GetGraphPoints(label18.Text, database.GetIterationID(label9.Text));
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+
+            if (textBox7.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected + 1)
+            {
+                string derp = textBox7.Text;
+                database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label18.Text, maxinout);
+                maxinout++;
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label18.Text, database.GetIterationID(label9.Text));
+                chart5.Series.Clear();
+                chart5.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Yellow) });
+
+                chart5.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart5.ChartAreas[0].AxisY.Maximum = 10;
+                chart5.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart5.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+            if (yValues.Count == totalSelected + 1)
+            {
+                chart5.Series.Clear();
+                chart5.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Yellow) });
+                if (yValues.Count != null)
+                {
+                    maxinout = yValues.Count - 1;
+                }
+                else
+                {
+                    maxinout = 0;
+                }
+                chart5.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart5.ChartAreas[0].AxisY.Maximum = 10;
+                chart5.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart5.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            yValues = database.GetGraphPoints(label21.Text, database.GetIterationID(label9.Text));
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+
+            if (textBox8.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected + 1)
+            {
+                string derp = textBox8.Text;
+                database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label21.Text, maxinout);
+                maxinout++;
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label21.Text, database.GetIterationID(label9.Text));
+                chart6.Series.Clear();
+                chart6.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.LightGreen) });
+
+                chart6.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart6.ChartAreas[0].AxisY.Maximum = 10;
+                chart6.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart6.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+            if (yValues.Count == totalSelected + 1)
+            {
+                chart6.Series.Clear();
+                chart6.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.LightGreen) });
+                if (yValues.Count != null)
+                {
+                    maxinout = yValues.Count - 1;
+                }
+                else
+                {
+                    maxinout = 0;
+                }
+                chart6.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart6.ChartAreas[0].AxisY.Maximum = 10;
+                chart6.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart6.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            yValues = database.GetGraphPoints(label23.Text, database.GetIterationID(label9.Text));
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+
+            if (textBox9.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected + 1)
+            {
+                string derp = textBox9.Text;
+                database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label23.Text, maxinout);
+                maxinout++;
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label23.Text, database.GetIterationID(label9.Text));
+                chart7.Series.Clear();
+                chart7.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Green) });
+
+                chart7.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart7.ChartAreas[0].AxisY.Maximum = 10;
+                chart7.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart7.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+            if (yValues.Count == totalSelected + 1)
+            {
+                chart7.Series.Clear();
+                chart7.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Green) });
+                if (yValues.Count != null)
+                {
+                    maxinout = yValues.Count - 1;
+                }
+                else
+                {
+                    maxinout = 0;
+                }
+                chart7.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart7.ChartAreas[0].AxisY.Maximum = 10;
+                chart7.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart7.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+        }
+
+        private void button38_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            yValues = database.GetGraphPoints(label29.Text, database.GetIterationID(label9.Text));
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+
+            if (textBox12.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected + 1)
+            {
+                string derp = textBox12.Text;
+                database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label29.Text, maxinout);
+                maxinout++;
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label29.Text, database.GetIterationID(label9.Text));
+                chart10.Series.Clear();
+                chart10.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.DarkSlateGray) });
+
+                chart10.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart10.ChartAreas[0].AxisY.Maximum = 10;
+                chart10.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart10.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+            if (yValues.Count == totalSelected + 1)
+            {
+                chart10.Series.Clear();
+                chart10.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.DarkSlateGray) });
+                if (yValues.Count != null)
+                {
+                    maxinout = yValues.Count - 1;
+                }
+                else
+                {
+                    maxinout = 0;
+                }
+                chart10.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart10.ChartAreas[0].AxisY.Maximum = 10;
+                chart10.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart10.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+        }
+
+        private void button36_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            yValues = database.GetGraphPoints(label28.Text, database.GetIterationID(label9.Text));
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+
+            if (textBox11.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected + 1)
+            {
+                string derp = textBox11.Text;
+                database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label28.Text, maxinout);
+                maxinout++;
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label28.Text, database.GetIterationID(label9.Text));
+                chart9.Series.Clear();
+                chart9.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.MediumPurple) });
+
+                chart9.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart9.ChartAreas[0].AxisY.Maximum = 10;
+                chart9.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart9.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+            if (yValues.Count == totalSelected + 1)
+            {
+                chart9.Series.Clear();
+                chart9.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.MediumPurple) });
+                if (yValues.Count != null)
+                {
+                    maxinout = yValues.Count - 1;
+                }
+                else
+                {
+                    maxinout = 0;
+                }
+                chart9.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart9.ChartAreas[0].AxisY.Maximum = 10;
+                chart9.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart9.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+        }
+
+        private void button34_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            yValues = database.GetGraphPoints(label27.Text, database.GetIterationID(label9.Text));
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+
+            if (textBox10.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected + 1)
+            {
+                string derp = textBox10.Text;
+                database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label27.Text, maxinout);
+                maxinout++;
+                yValues.Clear();
+                yValues = database.GetGraphPoints(label27.Text, database.GetIterationID(label9.Text));
+                chart8.Series.Clear();
+                chart8.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Purple) });
+
+                chart8.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart8.ChartAreas[0].AxisY.Maximum = 10;
+                chart8.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart8.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+            if (yValues.Count == totalSelected + 1)
+            {
+                chart8.Series.Clear();
+                chart8.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Purple) });
+                if (yValues.Count != null)
+                {
+                    maxinout = yValues.Count - 1;
+                }
+                else
+                {
+                    maxinout = 0;
+                }
+                chart8.ChartAreas[0].AxisX.IsMarginVisible = false;
+                int i = 0;
+                chart8.ChartAreas[0].AxisY.Maximum = 10;
+                chart8.ChartAreas[0].AxisY.Minimum = 0;
+                foreach (var item in yValues)
+                {
+                    chart8.Series[0].Points.Add(new DataPoint(i, item));
+                    i++;
+                }
+            }
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            database.ClearGraph(label14.Text, database.GetIterationID(label9.Text));
+            chart3.Series.Clear();
+            chart3.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count - 1;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+            chart3.ChartAreas[0].AxisX.IsMarginVisible = false;
+            int i = 0;
+            chart3.ChartAreas[0].AxisY.Maximum = 10;
+            chart3.ChartAreas[0].AxisY.Minimum = 0;
+            foreach (var item in yValues)
+            {
+                chart3.Series[0].Points.Add(new DataPoint(i, item));
+                i++;
+            }
+        }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            database.ClearGraph(label13.Text, database.GetIterationID(label9.Text));
+            chart4.Series.Clear();
+            chart4.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count - 1;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+            chart4.ChartAreas[0].AxisX.IsMarginVisible = false;
+            int i = 0;
+            chart4.ChartAreas[0].AxisY.Maximum = 10;
+            chart4.ChartAreas[0].AxisY.Minimum = 0;
+            foreach (var item in yValues)
+            {
+                chart4.Series[0].Points.Add(new DataPoint(i, item));
+                i++;
+            }
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            database.ClearGraph(label18.Text, database.GetIterationID(label9.Text));
+            chart5.Series.Clear();
+            chart5.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count - 1;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+            chart5.ChartAreas[0].AxisX.IsMarginVisible = false;
+            int i = 0;
+            chart5.ChartAreas[0].AxisY.Maximum = 10;
+            chart5.ChartAreas[0].AxisY.Minimum = 0;
+            foreach (var item in yValues)
+            {
+                chart5.Series[0].Points.Add(new DataPoint(i, item));
+                i++;
+            }
+        }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            database.ClearGraph(label21.Text, database.GetIterationID(label9.Text));
+            chart6.Series.Clear();
+            chart6.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count - 1;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+            chart6.ChartAreas[0].AxisX.IsMarginVisible = false;
+            int i = 0;
+            chart6.ChartAreas[0].AxisY.Maximum = 10;
+            chart6.ChartAreas[0].AxisY.Minimum = 0;
+            foreach (var item in yValues)
+            {
+                chart6.Series[0].Points.Add(new DataPoint(i, item));
+                i++;
+            }
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            database.ClearGraph(label23.Text, database.GetIterationID(label9.Text));
+            chart7.Series.Clear();
+            chart7.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count - 1;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+            chart7.ChartAreas[0].AxisX.IsMarginVisible = false;
+            int i = 0;
+            chart7.ChartAreas[0].AxisY.Maximum = 10;
+            chart7.ChartAreas[0].AxisY.Minimum = 0;
+            foreach (var item in yValues)
+            {
+                chart7.Series[0].Points.Add(new DataPoint(i, item));
+                i++;
+            }
+        }
+
+        private void button37_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            database.ClearGraph(label29.Text, database.GetIterationID(label9.Text));
+            chart10.Series.Clear();
+            chart10.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count - 1;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+            chart10.ChartAreas[0].AxisX.IsMarginVisible = false;
+            int i = 0;
+            chart10.ChartAreas[0].AxisY.Maximum = 10;
+            chart10.ChartAreas[0].AxisY.Minimum = 0;
+            foreach (var item in yValues)
+            {
+                chart10.Series[0].Points.Add(new DataPoint(i, item));
+                i++;
+            }
+        }
+
+        private void button35_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            database.ClearGraph(label28.Text, database.GetIterationID(label9.Text));
+            chart9.Series.Clear();
+            chart9.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count - 1;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+            chart9.ChartAreas[0].AxisX.IsMarginVisible = false;
+            int i = 0;
+            chart9.ChartAreas[0].AxisY.Maximum = 10;
+            chart9.ChartAreas[0].AxisY.Minimum = 0;
+            foreach (var item in yValues)
+            {
+                chart9.Series[0].Points.Add(new DataPoint(i, item));
+                i++;
+            }
+        }
+
+        private void button33_Click(object sender, EventArgs e)
+        {
+            yValues.Clear();
+            database.ClearGraph(label27.Text, database.GetIterationID(label9.Text));
+            chart8.Series.Clear();
+            chart8.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+            if (yValues.Count != null)
+            {
+                maxinout = yValues.Count - 1;
+            }
+            else
+            {
+                maxinout = 0;
+            }
+            chart8.ChartAreas[0].AxisX.IsMarginVisible = false;
+            int i = 0;
+            chart8.ChartAreas[0].AxisY.Maximum = 10;
+            chart8.ChartAreas[0].AxisY.Minimum = 0;
+            foreach (var item in yValues)
+            {
+                chart8.Series[0].Points.Add(new DataPoint(i, item));
+                i++;
+            }
         }
     }
 }
