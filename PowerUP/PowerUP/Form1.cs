@@ -313,13 +313,63 @@ namespace PowerUP
                         pagecontrol.SelectedTab = tabPage5;
                         label4.Text = lbl.Text;
                         database.Loadprojectfile(label4.Text);
+                        yValues.Clear();
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label12.Text, index));
+                        }
+
+                        chart1.Series.Clear();
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
+                        chart1.Series[0].Name = label12.Text;
+
+                        chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[0].AxisY.Maximum = 10;
+                        chart1.ChartAreas[0].AxisY.Minimum = 0;
+
+                        int temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[0].Points.Add(new DataPoint(i, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart1.ChartAreas[1].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[1].AxisY.Maximum = 10;
+                        chart1.ChartAreas[1].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label14.Text, index));
+                        }
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink) });
+                        chart1.Series[1].ChartArea = "ChartArea2";
+                        chart1.Series[1].Name = label14.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[1].Points.Add(new DataPoint(i, item));
+                            temp++;
+                        }
+
+                        yValues.Clear();
+                        chart1.ChartAreas[2].AxisX.IsMarginVisible = false;
+                        chart1.ChartAreas[2].AxisY.Maximum = 10;
+                        chart1.ChartAreas[2].AxisY.Minimum = 0;
+                        foreach (int index in database.OrderIterations(database.projects[0].ID1))
+                        {
+                            yValues.AddRange(database.GetGraphPoints(label13.Text, index));
+                        }
+                        chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange) });
+                        chart1.Series[2].ChartArea = "ChartArea3";
+                        chart1.Series[2].Name = label13.Text;
+                        temp = 0;
+                        foreach (var item in yValues)
+                        {
+                            chart1.Series[2].Points.Add(new DataPoint(i, item));
+                            temp++;
+                        }
                     };
-                    //lbl.Click += delegate
-                    //{
-                    //    pagecontrol.SelectedTab = tabPage5;
-                    //    label4.Text = lbl.Text; database.Loadprojectfile(label4.Text);
-                    //    label30.Text = database.projects[0].Description;
-                    //};
                 }
                 else
                 {
@@ -431,7 +481,7 @@ namespace PowerUP
             {
                 yValues.AddRange(database.GetGraphPoints(label13.Text, index));
             }
-            chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink) });
+            chart1.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange) });
             chart1.Series[2].ChartArea = "ChartArea3";
             chart1.Series[2].Name = label13.Text;
             i = 0;
