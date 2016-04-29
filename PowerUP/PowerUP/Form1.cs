@@ -34,6 +34,9 @@ namespace PowerUP
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
+            tabControl2.Appearance = TabAppearance.FlatButtons;
+            tabControl2.ItemSize = new Size(0, 1);
+            tabControl2.SizeMode = TabSizeMode.Fixed;
             database = new Database();
             if (database.Connection() != true)
             {
@@ -1682,9 +1685,23 @@ namespace PowerUP
 
         }
 
-        private void textBox13_TextChanged(object sender, EventArgs e)
+        private void button39_Click(object sender, EventArgs e)
+        {
+            if (tabControl2.SelectedIndex != 0)
+            {
+                tabControl2.SelectedIndex--;
+
+            }
+        }
+
+        private void button40_Click(object sender, EventArgs e)
         {
 
+            if (tabControl2.SelectedIndex != 2)
+            {
+                tabControl2.SelectedIndex++;
+
+            }
         }
     }
 }
