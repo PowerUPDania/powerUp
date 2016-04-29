@@ -504,20 +504,21 @@ namespace PowerUP
             string endDate = dateTimePicker4.Value.ToShortDateString();
             if (database.NameCheckSucces(projectName, true, database.projects[0].ID1))
             {
-            database.CreateProject(projectName, projectDescription, startDate, endDate);
+                database.projects.Clear();
+                database.CreateProject(projectName, projectDescription, startDate, endDate);
 
             }
-            
+
             label4.Text = textBox1.Text;
             label31.Text = label4.Text;
             listBox2.Items.Clear();
             database.projects[0].iterations.Clear();
-            database.LoadIterations(database.projects[0].ID1);
-            foreach (var iteration in database.projects[0].iterations)
-            {
-                listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " +
-                                   iteration.Slutdato);
-            }
+            //database.LoadIterations(database.projects[0].ID1);
+            //foreach (var iteration in database.projects[0].iterations)
+            //{
+            //    listBox2.Items.Add(iteration.Type1 + " : " + iteration.Name + " : " + iteration.Startdato + " : " +
+            //                       iteration.Slutdato);
+            //}
         }
 
         #endregion
@@ -1143,17 +1144,17 @@ namespace PowerUP
                 if (i <= 5)
                 {
 
-                    lbl.Location = new Point(10, i*60);
+                    lbl.Location = new Point(10, i * 60);
                 }
                 else if (i > 5 && i <= 11)
                 {
                     int yakse = i - 6;
-                    lbl.Location = new Point(350, yakse*60);
+                    lbl.Location = new Point(350, yakse * 60);
                 }
                 else
                 {
                     int yakse = i - 12;
-                    lbl.Location = new Point(700, yakse*60);
+                    lbl.Location = new Point(700, yakse * 60);
                 }
                 if (count - 1 >= i)
                 {
@@ -1545,15 +1546,15 @@ namespace PowerUP
             //eller måske så navnet er datoen og timestamp for idag.
             DateTime nameOfFile = DateTime.Now;
             // string date = nameOfFile.ToShortDateString();
-            string dum =nameOfFile.ToLongTimeString();
-           // var shit = date;
-            Directory.CreateDirectory(Directory.GetCurrentDirectory()+"\\images\\");
+            string dum = nameOfFile.ToLongTimeString();
+            // var shit = date;
+            Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\images\\");
             String tempFileName = Directory.GetCurrentDirectory() + "\\images\\" + dum + ".jpg";
-            if (tabControl2.SelectedTab==tabPage11)
+            if (tabControl2.SelectedTab == tabPage11)
             {
-               
-            chart1.SaveImage(tempFileName, ChartImageFormat.Png);
-                
+
+                chart1.SaveImage(tempFileName, ChartImageFormat.Png);
+
 
             }
             if (tabControl2.SelectedTab == tabPage14)
@@ -1564,7 +1565,7 @@ namespace PowerUP
             {
                 chart12.SaveImage(tempFileName, ChartImageFormat.Png);
             }
-               
+
         }
 
         #endregion
@@ -2000,8 +2001,8 @@ namespace PowerUP
                 if (database.NameCheckSucces(database.projects[0].Name, false, database.projects[0].ID1))
                 {
 
-                database.CreateIteration(database.projects[0].ID1, iterationName, listBox1.SelectedItem.ToString(),
-                    (int)total, startDate, endDate);
+                    database.CreateIteration(database.projects[0].ID1, iterationName, listBox1.SelectedItem.ToString(),
+                        (int)total, startDate, endDate);
                 }
             }
         }
@@ -2126,7 +2127,7 @@ namespace PowerUP
                 maxinout = 0;
             }
 
-            if (textBox4.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected+1)
+            if (textBox4.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected + 1)
             {
                 string derp = textBox4.Text;
                 database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label12.Text, maxinout);
@@ -2146,7 +2147,7 @@ namespace PowerUP
                     i++;
                 }
             }
-            if (yValues.Count == totalSelected+1)
+            if (yValues.Count == totalSelected + 1)
             {
                 chart2.Series.Clear();
                 chart2.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Red) });
@@ -2215,7 +2216,7 @@ namespace PowerUP
                 maxinout = 0;
             }
 
-            if (textBox5.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected+1)
+            if (textBox5.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected + 1)
             {
                 string derp = textBox5.Text;
                 database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label14.Text, maxinout);
@@ -2223,7 +2224,7 @@ namespace PowerUP
                 yValues.Clear();
                 yValues = database.GetGraphPoints(label14.Text, database.GetIterationID(label9.Text));
                 chart3.Series.Clear();
-                chart3.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink)});
+                chart3.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink) });
                 chart3.ChartAreas[0].AxisX.IsMarginVisible = false;
                 int i = 0;
                 chart3.ChartAreas[0].AxisY.Maximum = 10;
@@ -2238,7 +2239,7 @@ namespace PowerUP
             if (yValues.Count == totalSelected + 1)
             {
                 chart3.Series.Clear();
-                chart3.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink)});
+                chart3.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.HotPink) });
                 if (yValues.Count != null)
                 {
                     maxinout = yValues.Count - 1;
@@ -2277,7 +2278,7 @@ namespace PowerUP
                 maxinout = 0;
             }
 
-            if (textBox6.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected+1)
+            if (textBox6.Text != "" && maxinout <= totalSelected && yValues.Count != totalSelected + 1)
             {
                 string derp = textBox6.Text;
                 database.SavePoint(Convert.ToInt32(derp), database.GetIterationID(label9.Text), label13.Text, maxinout);
@@ -2285,7 +2286,7 @@ namespace PowerUP
                 yValues.Clear();
                 yValues = database.GetGraphPoints(label13.Text, database.GetIterationID(label9.Text));
                 chart4.Series.Clear();
-                chart4.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange)});
+                chart4.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange) });
 
                 chart4.ChartAreas[0].AxisX.IsMarginVisible = false;
                 int i = 0;
@@ -2300,7 +2301,7 @@ namespace PowerUP
             if (yValues.Count == totalSelected + 1)
             {
                 chart4.Series.Clear();
-                chart4.Series.Add(new Series {ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange)});
+                chart4.Series.Add(new Series { ChartType = SeriesChartType.Area, Color = Color.FromArgb(50, Color.Orange) });
                 if (yValues.Count != null)
                 {
                     maxinout = yValues.Count - 1;
