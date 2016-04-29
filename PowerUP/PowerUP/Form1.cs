@@ -34,6 +34,9 @@ namespace PowerUP
             tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.ItemSize = new Size(0, 1);
             tabControl1.SizeMode = TabSizeMode.Fixed;
+            tabControl2.Appearance = TabAppearance.FlatButtons;
+            tabControl2.ItemSize = new Size(0, 1);
+            tabControl2.SizeMode = TabSizeMode.Fixed;
             database = new Database();
             if (database.Connection() != true)
             {
