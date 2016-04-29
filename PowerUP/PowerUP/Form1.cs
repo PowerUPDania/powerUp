@@ -321,7 +321,12 @@ namespace PowerUP
             string projectDescription = textBox2.Text;
             string startDate = dateTimePicker1.Value.ToShortDateString();
             string endDate = dateTimePicker4.Value.ToShortDateString();
+            if (database.NameCheckSucces(projectName, true, database.projects[0].ID1))
+            {
             database.CreateProject(projectName, projectDescription, startDate, endDate);
+
+            }
+            
             label4.Text = textBox1.Text;
             label31.Text = label4.Text;
             listBox2.Items.Clear();
@@ -1433,8 +1438,12 @@ namespace PowerUP
                 string endDate = dateTimePicker3.Value.ToShortDateString();
                 string iterationName = textBox3.Text;
                 listBox2.Items.Add(listBox1.SelectedItem + " : " + iterationName + " : " + startDate + " : " + endDate);
+                if (database.NameCheckSucces(database.projects[0].Name, false, database.projects[0].ID1))
+                {
+
                 database.CreateIteration(database.projects[0].ID1, iterationName, listBox1.SelectedItem.ToString(),
                     (int)total, startDate, endDate);
+                }
             }
         }
 
