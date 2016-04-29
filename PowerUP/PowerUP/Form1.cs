@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -286,9 +287,14 @@ namespace PowerUP
             chart2.Width = 2100;
             chart2.Height = 1500;
             chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-
-
-            chart2.SaveImage(@"C:\Users\claus\Desktop\projectUP\PowerUP\PowerUP\bingo.png", ChartImageFormat.Png);
+            // sætningen nedenunder skal ændres så brugeren selv bestemmer navn 
+            //eller måske så navnet er datoen og timestamp for idag.
+            string nameOfFile = "wollah";
+           
+               
+            Directory.CreateDirectory(Directory.GetCurrentDirectory()+"\\images\\");
+            String tempFileName = Directory.GetCurrentDirectory() + "\\images\\" + nameOfFile + ".jpg";
+            chart2.SaveImage(tempFileName, ChartImageFormat.Png);
         }
 
         #endregion
