@@ -1606,5 +1606,24 @@ namespace PowerUP
         {
 
         }
+
+        private void button39_Click(object sender, EventArgs e)
+        {
+            if (tabControl2.SelectedIndex != 0)
+            {
+                tabControl2.SelectedIndex--;
+
+            }
+        }
+
+        private void button40_Click(object sender, EventArgs e)
+        {
+
+            if (tabControl2.SelectedIndex != 2)
+            {
+                tabControl2.SelectedIndex++;
+
+            }
+        }
     }
 }
