@@ -1537,18 +1537,34 @@ namespace PowerUP
 
         private void button11_Click(object sender, EventArgs e)
         {
-            chart2.Visible = false;
-            chart2.Width = 2100;
-            chart2.Height = 1500;
-            chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
+            //chart2.Visible = false;
+            //chart2.Width = 2100;
+            //chart2.Height = 1500;
+            //chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
             // sætningen nedenunder skal ændres så brugeren selv bestemmer navn 
             //eller måske så navnet er datoen og timestamp for idag.
-            string nameOfFile = "wollah";
-           
-               
+            DateTime nameOfFile = DateTime.Now;
+            // string date = nameOfFile.ToShortDateString();
+            string dum =nameOfFile.ToLongTimeString();
+           // var shit = date;
             Directory.CreateDirectory(Directory.GetCurrentDirectory()+"\\images\\");
-            String tempFileName = Directory.GetCurrentDirectory() + "\\images\\" + nameOfFile + ".jpg";
-            chart2.SaveImage(tempFileName, ChartImageFormat.Png);
+            String tempFileName = Directory.GetCurrentDirectory() + "\\images\\" + dum + ".jpg";
+            if (tabControl2.SelectedTab==tabPage11)
+            {
+               
+            chart1.SaveImage(tempFileName, ChartImageFormat.Png);
+                
+
+            }
+            if (tabControl2.SelectedTab == tabPage14)
+            {
+                chart11.SaveImage(tempFileName, ChartImageFormat.Png);
+            }
+            if (tabControl2.SelectedTab == tabPage15)
+            {
+                chart12.SaveImage(tempFileName, ChartImageFormat.Png);
+            }
+               
         }
 
         #endregion
