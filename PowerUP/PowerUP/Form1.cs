@@ -1681,5 +1681,10 @@ namespace PowerUP
         {
 
         }
+
+        private void textBox13_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
