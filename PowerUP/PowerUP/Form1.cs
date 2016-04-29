@@ -282,7 +282,13 @@ namespace PowerUP
 
         private void button11_Click(object sender, EventArgs e)
         {
+            chart2.Visible = false;
+            chart2.Width = 2100;
+            chart2.Height = 1500;
+            chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
 
+
+            chart2.SaveImage(@"C:\Users\claus\Desktop\projectUP\PowerUP\PowerUP\bingo.png", ChartImageFormat.Png);
         }
 
         #endregion
