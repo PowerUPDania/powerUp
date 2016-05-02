@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Project overview screen:
+On the project overview screen, there will be a table of with different boxes.
+They have two states, filled, which mean that you have a saved project, which you can now edit, or empty, in which you can create a new project.
+To do this, simply press on the box, either with name of your project in them, or a box saying “Create a new project”, if you wish to do so. Please do always call your projects a unique name.
+
+Project creation screen:
+If you decided to create a new project you will get to this screen.  On this screen you will be able to enter different information about the project you are creating. You can give your project a name, a description and choose how long the project will be in the date-time pickers. 
+If you created the project by mistake, you will be able go back to the project overview screen without having to finish the creation of the project by pressing cancel.
+
+Project edit screen:
+This screen will show you an overview of the project. It’ll show you the name on the top and it’ll show you an un-editable overview of your different artifact set graphs. From here, you have a few options: Edit will get you to the iteration overview screen (See Iteration overview screen), Exit will bring you back to the Project overview, Delete will delete the entire project (beware, there is no “Are you sure”-popup, this is instant and permanent), Export will export the currently visible graphs as an image to the folder of installation. The page up and page down buttons will switch between the visible graph sets.
+
+Iteration overview screen:
+When edit on project edit screen is pressed, it will take you to this screen. On this screen, you’ll see to big boxes, the one on the left holding the four types of iterations, and the one on the right holding all of the iterations you have created for the current project. If no iterations have been created, this box will be empty. To create a new iteration, select the type in the box on the left, enter a name in the middle, choose how long the iteration will be in the date-time pickers, choose if you want to include weekends by checking the checkbox next to “Include weekends” and finally press Create underneath these other functions. You will see that the things you have entered pops up in the big box on the right.
+You can select created iteration by clicking on them. When this is done, you have some options: Press Edit to enter the Iteration editor screen (see Iteration edito), press delete to delete the selected iteration (beware, this is instant and perminant) or press move item up or move item down to move the around in the list. This will determine in which order the iterations will be shown in the project overview graphs.
+
+Iteration editor:
+In iteration editor, three graph areas will appear. These all represent the artifact set matching the text-labels in the left. In the small text box next to “Focus 0-10” you will be able to enter a number from 1 to 10. This number will be put into the above graph, when you press the Input-button. The number is representing how much you have focused on the given artifact set during one day (the input system is made for one day at a time). You will be able to put focus on accounting to the amount of days you’ve put into that iteration. All iteration, no matter the type or amount, all have a set of predetermined artifact sets that on which you will be able to adjust the focus.
+‘Page Up’ and ‘Page Down’ will show the next three artifact sets for you to adjust.
+
+Export:
+The saved image when you export the current 3 graphs  will be placed in a image folder where  your program is located.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1044,26 +1068,5 @@
         RMyHrorKfJQzD/5lcKLKwnF1/wCd/wDrj5jRlvKoptp2QROAqseoKlv2z4qp8J06Q0sd72o8qkdHtOxW
         WBr6l9wopftoZKGWRzf60bXMPuOKmiK/a2uI0vrLhT7YZfKS+RslJdJ//9k=
 </value>
-  </data>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Project overview screen:
-On the project overview screen, there will be a table of with different boxes.
-They have two states, filled, which mean that you have a saved project, which you can now edit, or empty, in which you can create a new project.
-To do this, simply press on the box, either with name of your project in them, or a box saying “Create a new project”, if you wish to do so. Please do always call your projects a unique name.
-
-Project creation screen:
-If you decided to create a new project you will get to this screen.  On this screen you will be able to enter different information about the project you are creating. You can give your project a name, a description and choose how long the project will be in the date-time pickers. 
-If you created the project by mistake, you will be able go back to the project overview screen without having to finish the creation of the project by pressing cancel.
-
-Project edit screen:
-This screen will show you an overview of the project. It’ll show you the name on the top and it’ll show you an un-editable overview of your different artifact set graphs. From here, you have a few options: Edit will get you to the iteration overview screen (See Iteration overview screen), Exit will bring you back to the Project overview, Delete will delete the entire project (beware, there is no “Are you sure”-popup, this is instant and permanent), Export will export the currently visible graphs as an image to the folder of installation. The page up and page down buttons will switch between the visible graph sets.
-
-Iteration overview screen:
-When edit on project edit screen is pressed, it will take you to this screen. On this screen, you’ll see to big boxes, the one on the left holding the four types of iterations, and the one on the right holding all of the iterations you have created for the current project. If no iterations have been created, this box will be empty. To create a new iteration, select the type in the box on the left, enter a name in the middle, choose how long the iteration will be in the date-time pickers, choose if you want to include weekends by checking the checkbox next to “Include weekends” and finally press Create underneath these other functions. You will see that the things you have entered pops up in the big box on the right.
-You can select created iteration by clicking on them. When this is done, you have some options: Press Edit to enter the Iteration editor screen (see Iteration edito), press delete to delete the selected iteration (beware, this is instant and perminant) or press move item up or move item down to move the around in the list. This will determine in which order the iterations will be shown in the project overview graphs.
-
-Iteration editor:
-In iteration editor, three graph areas will appear. These all represent the artifact set matching the text-labels in the left. In the small text box next to “Focus 0-10” you will be able to enter a number from 1 to 10. This number will be put into the above graph, when you press the Input-button. The number is representing how much you have focused on the given artifact set during one day (the input system is made for one day at a time). You will be able to put focus on accounting to the amount of days you’ve put into that iteration. All iteration, no matter the type or amount, all have a set of predetermined artifact sets that on which you will be able to adjust the focus.
-‘Page Up’ and ‘Page Down’ will show the next three artifact sets for you to adjust.</value>
   </data>
 </root>
